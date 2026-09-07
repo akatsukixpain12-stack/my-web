@@ -1,49 +1,29 @@
 name: Fix site counters and Discord profile
-
 on:
   push:
-    branches: [main]
-
+    branches:
+      - main
 permissions:
   contents: write
-
 jobs:
   patch:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Patch index.html
-        shell: python {0}
+      - uses: actions/checkout@v4
+      - name: Patch site
         run: |
+          python3 - <<'PY'
           from pathlib import Path
           import re
-
-          p = Path("index.html")
-          s = p.read_text(encoding="utf-8")
-
-          s = re.sub(
-              r'<div class="views-counter"><span id="viewCount">.*?</span> views</div>',
-              '<div class="views-counter"><span id="viewCount">0</span> views</div>',
-              s,
-              count=1,
-              flags=re.S,
-          )
-
-          old_views = re.search(
-              r'    function animateViews\(\) \{.*?    \}\n    animateViews\(\);\n',
-              s,
-              flags=re.S,
-          )
-          new_views = '''    /* ===== REAL PERSISTENT VIEW COUNTER ===== */
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+          s = re.sub(r'<div class="views-counter"><span id="viewCount">.*?</span> views</div>', '<div class="views-counter"><span id="viewCount">0</span> views</div>', s, count=1, flags=re.S)
+          old = re.search(r'    function animateViews\(\) \{.*?    \}\n    animateViews\(\);\n', s, re.S)
+          new = '''    /* ===== REAL PERSISTENT VIEW COUNTER ===== */
     async function animateViews() {
       const el = document.getElementById('viewCount');
       try {
-        const res = await fetch(
-          'https://countapi.mileshilliard.com/api/v1/hit/akatsukixpain12-stack-my-web-divine-verity-views',
-          { cache: 'no-store' }
-        );
+        const res = await fetch('https://counterapi.com/api/akatsukixpain12-stack-my-web/view/divine-verity', { cache: 'no-store' });
         if (!res.ok) throw new Error('counter request failed');
         const data = await res.json();
         const target = Number(data.value);
@@ -53,10 +33,7 @@ jobs:
         let current = start;
         const timer = setInterval(() => {
           current += step;
-          if (current >= target) {
-            current = target;
-            clearInterval(timer);
-          }
+          if (current >= target) { current = target; clearInterval(timer); }
           el.textContent = current.toLocaleString();
         }, 25);
       } catch (err) {
@@ -66,59 +43,38 @@ jobs:
     }
     animateViews();
 '''
-          if not old_views:
-              raise SystemExit("Could not find old view-counter function")
-          s = s[:old_views.start()] + new_views + s[old_views.end():]
-
-          s = re.sub(
-              r'\n    setInterval\(\(\) => \{\n      const el = document\.getElementById\(\'viewCount\'\);\n      let current = parseInt\(el\.textContent\);\n      if \(Math\.random\(\) > 0\.7\) el\.textContent = current \+ 1;\n    \}, 5000\);\n',
-              '\n',
-              s,
-              count=1,
-          )
-
-          old_discord = re.search(
-              r'    async function fetchLanyard\(\) \{.*?    setInterval\(fetchLanyard, 30000\);\n',
-              s,
-              flags=re.S,
-          )
-          new_discord = '''    /* ===== ROBUST DISCORD / LANYARD PROFILE ===== */
+          if not old: raise SystemExit('old view counter not found')
+          s = s[:old.start()] + new + s[old.end():]
+          s = re.sub(r'\n    setInterval\(\(\) => \{\n      const el = document\.getElementById\(\'viewCount\'\);\n      let current = parseInt\(el\.textContent\);\n      if \(Math\.random\(\) > 0\.7\) el\.textContent = current \+ 1;\n    \}, 5000\);\n', '\n', s, count=1)
+          old = re.search(r'    async function fetchLanyard\(\) \{.*?    setInterval\(fetchLanyard, 30000\);\n', s, re.S)
+          new = '''    /* ===== ROBUST DISCORD / LANYARD PROFILE ===== */
     const DISCORD_USER_ID = '1289053723041202186';
     const DISCORD_FALLBACK = {
       displayName: '┍DIVINE VERITY ヨハン┙',
       username: '@brutual_demon1',
       avatar: 'https://cdn.discordapp.com/avatars/1289053723041202186/6117d715761635a9857b698ec4fabadb.png?size=256'
     };
-
     function setDiscordText(id, value) {
-      if (value !== null && value !== undefined && String(value).trim()) {
-        document.getElementById(id).textContent = String(value);
-      }
+      if (value !== null && value !== undefined && String(value).trim()) document.getElementById(id).textContent = String(value);
     }
-
     function updateDiscordUI(data) {
-      const statusColors = { online: '#23a55a', idle: '#f0b232', dnd: '#f23f43', offline: '#747f8d' };
+      const colors = { online: '#23a55a', idle: '#f0b232', dnd: '#f23f43', offline: '#747f8d' };
       const status = data && data.discord_status ? data.discord_status : 'offline';
-      const color = statusColors[status] || statusColors.offline;
+      const color = colors[status] || colors.offline;
       document.getElementById('statusDot').style.background = color;
       document.getElementById('statusBadge').innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="${color}"><circle cx="12" cy="12" r="10"/></svg> ${status}`;
-
       const user = data && data.user ? data.user : null;
       if (user) {
-        const displayName = user.global_name || user.display_name || user.username;
-        if (displayName) setDiscordText('discordDisplayName', displayName);
+        const name = user.global_name || user.display_name || user.username;
+        if (name) setDiscordText('discordDisplayName', name);
         if (user.username) setDiscordText('discordUsername', '@' + user.username);
-        if (user.id && user.avatar) {
-          document.getElementById('discordAvatar').src = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=256`;
-        }
+        if (user.id && user.avatar) document.getElementById('discordAvatar').src = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=256`;
       }
-
       if (data && data.listening_to_spotify && data.spotify) {
         if (data.spotify.song) document.querySelector('.music-track').textContent = data.spotify.song;
         if (data.spotify.artist) document.querySelector('.music-artist').textContent = data.spotify.artist;
       }
     }
-
     async function fetchLanyard() {
       try {
         const res = await fetch(`https://api.lanyard.rest/v1/users/${DISCORD_USER_ID}`, { cache: 'no-store' });
@@ -131,29 +87,21 @@ jobs:
         console.warn('Lanyard unavailable; keeping fallback Discord profile.', e);
       }
     }
-
     document.getElementById('discordDisplayName').textContent = DISCORD_FALLBACK.displayName;
     document.getElementById('discordUsername').textContent = DISCORD_FALLBACK.username;
     document.getElementById('discordAvatar').src = DISCORD_FALLBACK.avatar;
     fetchLanyard();
     setInterval(fetchLanyard, 30000);
 '''
-          if not old_discord:
-              raise SystemExit("Could not find old Discord/Lanyard block")
-          s = s[:old_discord.start()] + new_discord + s[old_discord.end():]
-
-          p.write_text(s, encoding="utf-8")
-
-      - name: Commit fixes and remove patch workflow
-        shell: bash
+          if not old: raise SystemExit('old Discord block not found')
+          s = s[:old.start()] + new + s[old.end():]
+          p.write_text(s, encoding='utf-8')
+          PY
+      - name: Remove temporary workflow
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           rm -f .github/workflows/fix-site.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add index.html .github/workflows/fix-site.yml
-          if git diff --cached --quiet; then
-            echo "No changes to commit"
-            exit 0
-          fi
-          git commit -m "Fix Discord profile and real view counter"
+          git commit -m 'Fix Discord profile and real view counter' || exit 0
           git push
