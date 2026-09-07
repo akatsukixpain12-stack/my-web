@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DIVINE JOHAN</title>
+  <title>DIVINE VERITY</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -251,12 +251,12 @@
       <div class="section-label">Discord Presence</div>
       <div class="discord-card" id="discordCard">
         <div class="avatar-wrapper">
-          <img src="https://cdn.discordapp.com/avatars/1378350961285795870/6117d715761635a9857b698ec4fabadb.png?size=256" alt="avatar" class="avatar" id="discordAvatar">
+          <img src="https://cdn.discordapp.com/avatars/1289053723041202186/6117d715761635a9857b698ec4fabadb.png?size=256" alt="avatar" class="avatar" id="discordAvatar">
           <div class="status-dot" id="statusDot" style="background:#747f8d;"></div>
         </div>
         <div class="discord-info">
-          <div class="discord-name" id="discordDisplayName">┍DIVINE JOHAN ヨハン┙</div>
-          <div class="discord-username" id="discordUsername">@johan_x_silent</div>
+          <div class="discord-name" id="discordDisplayName">┍DIVINE VERITY ヨハン┙</div>
+          <div class="discord-username" id="discordUsername">@brutual_demon1</div>
           <div style="margin-top:10px;">
             <span class="discord-badge" id="statusBadge">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
@@ -458,7 +458,7 @@
 
     async function fetchLanyard() {
       try {
-        const res = await fetch('https://api.lanyard.rest/v1/users/1378350961285795870');
+        const res = await fetch('https://api.lanyard.rest/v1/users/1289053723041202186');
         const data = await res.json();
         if (data.success) updateDiscordUI(data.data);
       } catch (e) { console.log('Lanyard fetch failed'); }
