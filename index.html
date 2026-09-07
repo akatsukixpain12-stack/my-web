@@ -37,7 +37,7 @@
     }
     .noise {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; opacity: 0.025;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOcta[...]
     }
     .cursor-glow {
       position: fixed; width: 300px; height: 300px;
@@ -75,10 +75,10 @@
     .role-container { display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; min-height: 60px; }
     .role-prefix { font-family: 'JetBrains Mono', monospace; font-size: clamp(1rem, 3vw, 1.5rem); color: var(--text-muted); font-weight: 400; }
     .role-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 12px 28px; min-width: 280px; position: relative; overflow: hidden; }
-    .role-box::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent); animation: shimmer 3s infinite; }
+    .role-box::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent); anima[...]
     @keyframes shimmer { 0%{left:-100%} 100%{left:100%} }
     .role-text { font-family: 'JetBrains Mono', monospace; font-size: clamp(1rem, 3vw, 1.4rem); font-weight: 600; color: var(--text); display: inline-block; min-width: 200px; }
-    .role-subtext { font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--text-dim); margin-top: 12px; letter-spacing: 2px; text-transform: uppercase; opacity: 0; transform: translateY(10px); transition: all 0.5s cubic-bezier(0.4,0,0.2,1); }
+    .role-subtext { font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--text-dim); margin-top: 12px; letter-spacing: 2px; text-transform: uppercase; opacity: 0; transform: tran[...]
     .role-subtext.visible { opacity: 1; transform: translateY(0); }
 
     .scroll-indicator { position: absolute; bottom: 60px; display: flex; flex-direction: column; align-items: center; gap: 12px; animation: bounce 2s infinite; }
@@ -89,16 +89,16 @@
     /* Discord */
     .discord-section { padding: 100px 0; }
     .section-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 4px; color: var(--text-dim); text-transform: uppercase; margin-bottom: 40px; text-align: center; }
-    .discord-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 32px; display: flex; align-items: center; gap: 24px; position: relative; overflow: hidden; transition: transform 0.3s ease, border-color 0.3s ease; }
+    .discord-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 32px; display: flex; align-items: center; gap: 24px; position: relative; overflow: hi[...]
     .discord-card:hover { transform: translateY(-4px); border-color: #333; }
-    .discord-card::after { content: ''; position: absolute; top: 0; right: 0; width: 150px; height: 150px; background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%); pointer-events: none; }
+    .discord-card::after { content: ''; position: absolute; top: 0; right: 0; width: 150px; height: 150px; background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%); pointer-[...]
     .avatar-wrapper { position: relative; flex-shrink: 0; }
     .avatar { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border); }
     .status-dot { position: absolute; bottom: 4px; right: 4px; width: 18px; height: 18px; border-radius: 50%; background: #747f8d; border: 3px solid var(--bg-card); }
     .discord-info { flex: 1; }
     .discord-name { font-size: 1.3rem; font-weight: 700; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
     .discord-username { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--text-muted); }
-    .discord-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; font-size: 11px; color: var(--text-muted); margin-top: 8px; }
+    .discord-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; font-size: 11px; [...]
 
     /* About */
     .about-section { padding: 100px 0; }
@@ -114,7 +114,7 @@
     .skill-card:hover { border-color: #333; transform: translateY(-2px); }
     .skill-title { font-size: 0.95rem; font-weight: 600; margin-bottom: 8px; }
     .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-    .skill-tag { font-family: 'JetBrains Mono', monospace; font-size: 11px; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 4px; padding: 3px 8px; color: var(--text-muted); }
+    .skill-tag { font-family: 'JetBrains Mono', monospace; font-size: 11px; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 4px; padding: 3px 8px; color: var(--tex[...]
 
     /* GitHub Link */
     .links-section { padding: 60px 0 140px; }
@@ -242,7 +242,7 @@
 
       <div class="scroll-indicator">
         <span>scroll down</span>
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></s[...]
       </div>
     </section>
 
@@ -284,10 +284,10 @@
       <div class="section-label">Expertise</div>
       <div class="skills-grid">
         <div class="skill-card" id="skill1"><div class="skill-title">Developer</div><div class="skill-tags"><span class="skill-tag">C</span><span class="skill-tag">C++</span></div></div>
-        <div class="skill-card" id="skill2"><div class="skill-title">Anti Cheat Bypasser</div><div class="skill-tags"><span class="skill-tag">C++</span><span class="skill-tag">ASM</span><span class="skill-tag">Memory</span><span class="skill-tag">Hooks</span></div></div>
+        <div class="skill-card" id="skill2"><div class="skill-title">Anti Cheat Bypasser</div><div class="skill-tags"><span class="skill-tag">C++</span><span class="skill-tag">ASM</span><span cla[...]
         <div class="skill-card" id="skill3"><div class="skill-title">Executor Developer</div><div class="skill-tags"><span class="skill-tag">Luau</span></div></div>
-        <div class="skill-card" id="skill4"><div class="skill-title">Web Developer</div><div class="skill-tags"><span class="skill-tag">HTML</span><span class="skill-tag">CSS</span><span class="skill-tag">JS</span></div></div>
-        <div class="skill-card" id="skill5"><div class="skill-title">International Player</div><div class="skill-tags"><span class="skill-tag">Chess</span><span class="skill-tag">Strategy</span></div></div>
+        <div class="skill-card" id="skill4"><div class="skill-title">Web Developer</div><div class="skill-tags"><span class="skill-tag">HTML</span><span class="skill-tag">CSS</span><span class="s[...]
+        <div class="skill-card" id="skill5"><div class="skill-title">International Player</div><div class="skill-tags"><span class="skill-tag">Chess</span><span class="skill-tag">Strategy</span><[...]
       </div>
     </section>
 
@@ -307,7 +307,7 @@
   <div class="music-player" id="musicPlayer">
     <div class="music-left">
       <div class="music-cover">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"[...]
       </div>
       <div class="music-main">
         <div class="music-track">montagem celestial espranza</div>
@@ -322,13 +322,13 @@
             <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
           </button>
           <button class="music-btn" id="btnShuffle">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><l[...]
           </button>
           <button class="music-btn" id="btnRepeat">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><p[...]
           </button>
           <button class="music-btn" id="btnMute">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 [...]
           </button>
         </div>
       </div>
@@ -336,10 +336,10 @@
     <div class="music-right">
       <div class="music-top-icons">
         <button class="music-top-btn" id="btnExpand" title="Expand">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a[...]
         </button>
         <button class="music-top-btn" id="btnMinimize" title="Minimize">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><[...]
         </button>
       </div>
       <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="80">
@@ -458,7 +458,7 @@
 
     async function fetchLanyard() {
       try {
-        const res = await fetch('https://api.lanyard.rest/v1/users/1378350961285795870');
+        const res = await fetch('https://api.lanyard.rest/v1/users/1289053723041202186');
         const data = await res.json();
         if (data.success) updateDiscordUI(data.data);
       } catch (e) { console.log('Lanyard fetch failed'); }
@@ -467,7 +467,7 @@
     function updateDiscordUI(data) {
       const statusColors = { online: '#23a55a', idle: '#f0b232', dnd: '#f23f43', offline: '#747f8d' };
       document.getElementById('statusDot').style.background = statusColors[data.discord_status] || '#747f8d';
-      document.getElementById('statusBadge').innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="${statusColors[data.discord_status] || '#747f8d'}"><circle cx="12" cy="12" r="10"/></svg> ${data.discord_status}`;
+      document.getElementById('statusBadge').innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="${statusColors[data.discord_status] || '#747f8d'}"><circle cx="12" cy="12" r="10"/>[...]
       if (data.listening_to_spotify && data.spotify) {
         document.querySelector('.music-track').textContent = data.spotify.song;
         document.querySelector('.music-artist').textContent = data.spotify.artist;
@@ -544,9 +544,9 @@
     volumeSlider.addEventListener('input', (e) => {
       audio.volume = e.target.value / 100;
       if (audio.volume === 0) {
-        btnMute.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>';
+        btnMute.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 [...]
       } else {
-        btnMute.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>';
+        btnMute.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 [...]
       }
     });
 
@@ -554,9 +554,9 @@
       isMuted = !isMuted;
       audio.muted = isMuted;
       if (isMuted) {
-        btnMute.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>';
+        btnMute.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 [...]
       } else {
-        btnMute.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>';
+        btnMute.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 [...]
       }
     });
 
