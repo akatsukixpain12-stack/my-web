@@ -1,0 +1,169 @@
+name: Fix site counters and Discord profile
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Patch index.html
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          p = Path("index.html")
+          s = p.read_text(encoding="utf-8")
+
+          # Real persistent page-view counter. The old code used a hard-coded
+          # number plus random increments, so it could never represent real views.
+          s = re.sub(
+              r'<div class="views-counter"><span id="viewCount">.*?</span> views</div>',
+              '<div class="views-counter"><span id="viewCount">0</span> views</div>',
+              s,
+              count=1,
+              flags=re.S,
+          )
+
+          old_views = re.search(
+              r'    function animateViews\(\) \{.*?    \}\n    animateViews\(\);\n',
+              s,
+              flags=re.S,
+          )
+          new_views = '''    /* ===== REAL PERSISTENT VIEW COUNTER ===== */
+    async function animateViews() {
+      const el = document.getElementById('viewCount');
+      const fallback = 0;
+      try {
+        const res = await fetch(
+          'https://countapi.mileshilliard.com/api/v1/hit/akatsukixpain12-stack-my-web-divine-verity-views',
+          { cache: 'no-store' }
+        );
+        if (!res.ok) throw new Error('counter request failed');
+        const data = await res.json();
+        const target = Number(data.value);
+        if (!Number.isFinite(target)) throw new Error('invalid counter response');
+
+        const start = Number(el.textContent) || 0;
+        const step = Math.max(1, Math.ceil((target - start) / 30));
+        let current = start;
+        const timer = setInterval(() => {
+          current += step;
+          if (current >= target) {
+            current = target;
+            clearInterval(timer);
+          }
+          el.textContent = current.toLocaleString();
+        }, 25);
+      } catch (err) {
+        console.warn('View counter unavailable:', err);
+        el.textContent = fallback.toLocaleString();
+      }
+    }
+    animateViews();
+'''
+          if not old_views:
+              raise SystemExit("Could not find old view-counter function")
+          s = s[:old_views.start()] + new_views + s[old_views.end():]
+
+          # Remove the fake random view increments.
+          s = re.sub(
+              r'\n    setInterval\(\(\) => \{\n      const el = document\.getElementById\(\'viewCount\'\);\n      let current = parseInt\(el\.textContent\);\n      if \(Math\.random\(\) > 0\.7\) el\.textContent = current \+ 1;\n    \}, 5000\);\n',
+              '\n',
+              s,
+              count=1,
+          )
+
+          old_discord = re.search(
+              r'    async function fetchLanyard\(\) \{.*?    setInterval\(fetchLanyard, 30000\);\n',
+              s,
+              flags=re.S,
+          )
+          new_discord = '''    /* ===== ROBUST DISCORD / LANYARD PROFILE ===== */
+    const DISCORD_USER_ID = '1289053723041202186';
+    const DISCORD_FALLBACK = {
+      displayName: '┍DIVINE VERITY ヨハン┙',
+      username: '@brutual_demon1',
+      avatar: 'https://cdn.discordapp.com/avatars/1289053723041202186/6117d715761635a9857b698ec4fabadb.png?size=256'
+    };
+
+    function setDiscordText(id, value) {
+      if (value !== null && value !== undefined && String(value).trim()) {
+        document.getElementById(id).textContent = String(value);
+      }
+    }
+
+    function updateDiscordUI(data) {
+      const statusColors = { online: '#23a55a', idle: '#f0b232', dnd: '#f23f43', offline: '#747f8d' };
+      const status = data && data.discord_status ? data.discord_status : 'offline';
+      const color = statusColors[status] || statusColors.offline;
+
+      document.getElementById('statusDot').style.background = color;
+      document.getElementById('statusBadge').innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="${color}"><circle cx="12" cy="12" r="10"/></svg> ${status}`;
+
+      // Lanyard can temporarily return a response without a user object.
+      // Never write null/undefined into the profile UI; keep the last valid data.
+      const user = data && data.user ? data.user : null;
+      if (user) {
+        const displayName = user.global_name || user.display_name || user.username;
+        if (displayName) setDiscordText('discordDisplayName', displayName);
+        if (user.username) setDiscordText('discordUsername', '@' + user.username);
+        if (user.id && user.avatar) {
+          document.getElementById('discordAvatar').src = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=256`;
+        }
+      }
+
+      if (data && data.listening_to_spotify && data.spotify) {
+        if (data.spotify.song) document.querySelector('.music-track').textContent = data.spotify.song;
+        if (data.spotify.artist) document.querySelector('.music-artist').textContent = data.spotify.artist;
+      }
+    }
+
+    async function fetchLanyard() {
+      try {
+        const res = await fetch(`https://api.lanyard.rest/v1/users/${DISCORD_USER_ID}`, { cache: 'no-store' });
+        if (!res.ok) throw new Error(`Lanyard HTTP ${res.status}`);
+        const data = await res.json();
+        if (!data || !data.success || !data.data) throw new Error('Invalid Lanyard response');
+        updateDiscordUI(data.data);
+      } catch (e) {
+        // Keep the profile usable even when Lanyard is unavailable or returns null.
+        updateDiscordUI({ discord_status: 'offline', user: null });
+        console.warn('Lanyard unavailable; using cached/fallback Discord profile.', e);
+      }
+    }
+
+    // Seed the card with known-good profile data so it never renders "null".
+    document.getElementById('discordDisplayName').textContent = DISCORD_FALLBACK.displayName;
+    document.getElementById('discordUsername').textContent = DISCORD_FALLBACK.username;
+    document.getElementById('discordAvatar').src = DISCORD_FALLBACK.avatar;
+    fetchLanyard();
+    setInterval(fetchLanyard, 30000);
+'''
+          if not old_discord:
+              raise SystemExit("Could not find old Discord/Lanyard block")
+          s = s[:old_discord.start()] + new_discord + s[old_discord.end():]
+
+          p.write_text(s, encoding="utf-8")
+
+      - name: Commit fixes and remove patch workflow
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm -f .github/workflows/fix-site.yml
+          git add index.html .github/workflows/fix-site.yml
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "Fix Discord profile and real view counter"
+          git push
