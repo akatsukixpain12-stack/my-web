@@ -1199,47 +1199,16 @@ async function loadWorldChessRatings(){
   const cells={rapid:document.getElementById('worldRapid'),blitz:document.getElementById('worldBlitz'),bullet:document.getElementById('worldBullet')};
   const source=document.getElementById('worldSourceText');
   const profileUrl='https://worldchess.com/profile/1232722';
-  const apiUrls=[
-    'https://api.worldchess.com/profile/1232722',
-    'https://api.worldchess.com/api/profile/1232722',
-    'https://api.worldchess.com/user/1232722',
-    'https://api.worldchess.com/api/user/1232722'
-  ];
-  const pick=(obj,keys)=>{
-    for(const k of keys){
-      const v=k.split('.').reduce((o,x)=>o?.[x],obj);
-      if(typeof v==='number'||typeof v==='string')return v;
-    }
-    return null;
-  };
-  const put=(vals)=>{
-    const got=Object.values(vals).some(v=>v!==null&&v!==undefined&&v!=='');
-    if(!got)return false;
-    cells.rapid.textContent=vals.rapid??'—';
-    cells.blitz.textContent=vals.blitz??'—';
-    cells.bullet.textContent=vals.bullet??'—';
-    status.textContent='World Chess • current Online Elo';
-    if(source)source.textContent='Live Online Elo returned by World Chess.';
-    return true;
-  };
-  for(const url of apiUrls){
-    try{
-      const res=await fetch(url+'?ts='+Date.now(),{cache:'no-store',headers:{Accept:'application/json'}});
-      if(!res.ok)continue;
-      const data=await res.json();
-      const root=data?.data||data?.profile||data?.user||data;
-      if(put({
-        rapid:pick(root,['rapid.rating','rapid.onlineElo','rapid.elo','ratings.rapid.rating','onlineElo.rapid','online_elo.rapid']),
-        blitz:pick(root,['blitz.rating','blitz.onlineElo','blitz.elo','ratings.blitz.rating','onlineElo.blitz','online_elo.blitz']),
-        bullet:pick(root,['bullet.rating','bullet.onlineElo','bullet.elo','ratings.bullet.rating','onlineElo.bullet','online_elo.bullet'])
-      }))return;
-    }catch(e){}
-  }
-  cells.rapid.textContent='—';cells.blitz.textContent='—';cells.bullet.textContent='—';
-  status.innerHTML='World Chess • <a href="'+profileUrl+'" target="_blank" rel="noopener">open live profile ↗</a>';
-  if(source)source.textContent='World Chess does not expose a documented browser API here, so no old/cached rating is shown.';
-}
 
+  // World Chess exposes the live Online Elo on the public profile, but this
+  // static GitHub Pages app cannot safely read that cross-origin profile data.
+  // Never show a guessed or cached number.
+  cells.rapid.textContent='—';
+  cells.blitz.textContent='—';
+  cells.bullet.textContent='—';
+  status.innerHTML='World Chess • <a href="'+profileUrl+'" target="_blank" rel="noopener">open live Online Elo ↗</a>';
+  if(source)source.textContent='Live World Chess profile • no cached rating';
+}
 loadChessRatings();
 loadLichessRatings();
 loadWorldChessRatings();
