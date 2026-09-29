@@ -1057,23 +1057,6 @@ dragArea.addEventListener('pointerup',e=>{if(!isDragging)return;isDragging=false
 dragArea.addEventListener('pointercancel',()=>{isDragging=false;playerModal.style.transition='';snapSheet();});
 
 const  = document.getElementById('');
-document.querySelectorAll('.tab-btn').forEach(btn => btn.addEventListener('click', () => {
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  const isSpotify = btn.dataset.tab === 'spotify';
-  document.getElementById('themeTab').style.display = isSpotify ? 'none' : 'block';
-  ?.classList.toggle('active', isSpotify);
-  if(isSpotify) window.requestAnimationFrame(()=>document.querySelectorAll('# iframe').forEach(f=>{ if(!f.dataset.loaded){ f.dataset.loaded='1'; f.src=f.dataset.src; } }));
-}));
-
-const  = document.getElementById('');
-const  = document.getElementById('');
-if( && ){
-  let stacked = localStorage.getItem('statik_playlist_layout') === 'stacked';
-  const paintStack=()=>{.classList.toggle('is-stacked',stacked);.setAttribute('aria-pressed',String(stacked));.textContent=stacked?'Unstack':'Stack';};
-  .addEventListener('click',()=>{stacked=!stacked;localStorage.setItem('statik_playlist_layout',stacked?'stacked':'unstacked');paintStack();}); paintStack();
-}
-
 const audio = document.getElementById('audio');
 let audioCtx=null, analyser=null, audioSourceNode=null, vizData=null, vizRAF=0;
 const vizBars=[...document.querySelectorAll('#floatVisualizerBars span')];
