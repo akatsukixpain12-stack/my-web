@@ -567,8 +567,27 @@ body.light-theme .bg-video{opacity:.10;filter:blur(16px) saturate(.45) brightnes
 @media(max-width:600px){.bg-video{opacity:.13;filter:blur(12px) saturate(.55) brightness(.50)}body.light-theme .bg-video{opacity:.07}.rating-platform-head strong{font-size:10px}}
 </style>
 <style id="smart-background-and-readable-ratings">
-.bg-video{opacity:.045!important;filter:blur(30px) saturate(.35) brightness(.24)!important;transform:scale(1.16)!important}
-body.light-theme .bg-video{opacity:.025!important;filter:blur(34px) saturate(.25) brightness(1.02)!important}
+.bg-video{
+  opacity:.18!important;
+  filter:blur(4px) saturate(.78) brightness(.48) contrast(1.04)!important;
+  transform:scale(1.045)!important;
+  will-change:transform,opacity,filter;
+}
+body.light-theme .bg-video{
+  opacity:.13!important;
+  filter:blur(5px) saturate(.62) brightness(.82) contrast(1.02)!important;
+}
+@media(max-width:600px){
+  .bg-video{
+    opacity:.15!important;
+    filter:blur(3px) saturate(.72) brightness(.46) contrast(1.03)!important;
+    transform:scale(1.035)!important;
+  }
+  body.light-theme .bg-video{
+    opacity:.11!important;
+    filter:blur(4px) saturate(.58) brightness(.84) contrast(1.02)!important;
+  }
+}
 .chess-card{position:relative;isolation:isolate;background:rgba(8,10,13,.94)!important;backdrop-filter:blur(18px) saturate(110%)!important;-webkit-backdrop-filter:blur(18px) saturate(110%)!important}
 body.light-theme .chess-card{background:rgba(255,255,255,.94)!important}
 .chess-card>*{position:relative;z-index:2}
@@ -580,7 +599,7 @@ body.light-theme .rating-platform{background:rgba(0,0,0,.018)}
 
 <div class="scroll-progress" id="scrollProgress"></div>
 <body class="light-theme">
-<video id="bgVideo" class="bg-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
+<video id="bgVideo" class="bg-video" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
 <canvas id="particles"></canvas>
 <div class="ambient-particles" id="ambientParticles" aria-hidden="true"></div>
 <div class="grain"></div><div class="vignette"></div><div class="v7-atmosphere" aria-hidden="true"></div><div class="cursor-glow" id="cursorGlow"></div>
@@ -794,11 +813,33 @@ body.light-theme .rating-platform{background:rgba(0,0,0,.018)}
 <script>
 
 const bgVideo=document.getElementById('bgVideo');
-const EDIT_VIDEO='YTDown.com_Shorts_Media_AvtD5pW-v5c_Knightmare-Chess-Edit_002_720p.mp4';
+const EDIT_VIDEO='./YTDown.com_Shorts_Media_AvtD5pW-v5c_Knightmare-Chess-Edit_002_720p.mp4';
+
+function startBackgroundEdit(){
+  if(!bgVideo) return;
+  if(bgVideo.src !== new URL(EDIT_VIDEO, document.baseURI).href){
+    bgVideo.src=EDIT_VIDEO;
+    bgVideo.load();
+  }
+  const p=bgVideo.play();
+  if(p?.catch) p.catch(()=>{});
+}
+
 if(bgVideo){
-  bgVideo.src=EDIT_VIDEO;
-  bgVideo.load();
-  bgVideo.addEventListener('canplay',()=>bgVideo.play().catch(()=>{}),{once:true});
+  bgVideo.muted=true;
+  bgVideo.defaultMuted=true;
+  bgVideo.playsInline=true;
+  bgVideo.addEventListener('loadeddata',startBackgroundEdit,{once:true});
+  bgVideo.addEventListener('canplay',startBackgroundEdit,{once:true});
+  bgVideo.addEventListener('ended',()=>{bgVideo.currentTime=0;startBackgroundEdit();});
+  bgVideo.addEventListener('error',()=>{
+    // Retry once after a short delay if GitHub Pages/mobile decoding temporarily fails.
+    setTimeout(startBackgroundEdit,1200);
+  });
+  startBackgroundEdit();
+  document.addEventListener('visibilitychange',()=>{
+    if(document.visibilityState==='visible' && bgVideo.paused) startBackgroundEdit();
+  });
 }
 
 const watchEditBtn=document.getElementById('watchEditBtn');
@@ -1200,14 +1241,20 @@ async function loadWorldChessRatings(){
   const source=document.getElementById('worldSourceText');
   const profileUrl='https://worldchess.com/profile/1232722';
 
-  // World Chess exposes the live Online Elo on the public profile, but this
-  // static GitHub Pages app cannot safely read that cross-origin profile data.
-  // Never show a guessed or cached number.
-  cells.rapid.textContent='—';
-  cells.blitz.textContent='—';
-  cells.bullet.textContent='—';
-  status.innerHTML='World Chess • <a href="'+profileUrl+'" target="_blank" rel="noopener">open live Online Elo ↗</a>';
-  if(source)source.textContent='Live World Chess profile • no cached rating';
+  // World Chess does not currently expose a documented browser-safe
+  // public JSON endpoint for this profile. Do not fabricate or cache a number.
+  // Keep every field explicitly live-source based and give the user a direct
+  // one-tap route to the current Online Elo.
+  cells.rapid.textContent='live ↗';
+  cells.blitz.textContent='live ↗';
+  cells.bullet.textContent='live ↗';
+  [cells.rapid,cells.blitz,cells.bullet].forEach((cell)=>{
+    cell.style.cursor='pointer';
+    cell.title='Open current World Chess Online Elo';
+    cell.onclick=()=>window.open(profileUrl,'_blank','noopener');
+  });
+  status.innerHTML='World Chess • <a href="'+profileUrl+'" target="_blank" rel="noopener">current Online Elo ↗</a>';
+  if(source)source.textContent='Live World Chess profile • tap a rating to open the current value';
 }
 loadChessRatings();
 loadLichessRatings();
