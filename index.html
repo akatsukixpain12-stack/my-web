@@ -568,24 +568,24 @@ body.light-theme .bg-video{opacity:.10;filter:blur(16px) saturate(.45) brightnes
 </style>
 <style id="smart-background-and-readable-ratings">
 .bg-video{
-  opacity:.18!important;
-  filter:blur(4px) saturate(.78) brightness(.48) contrast(1.04)!important;
-  transform:scale(1.045)!important;
+  opacity:.24!important;
+  filter:blur(1px) saturate(.88) brightness(.52) contrast(1.06)!important;
+  transform:scale(1.025)!important;
   will-change:transform,opacity,filter;
 }
 body.light-theme .bg-video{
-  opacity:.13!important;
-  filter:blur(5px) saturate(.62) brightness(.82) contrast(1.02)!important;
+  opacity:.17!important;
+  filter:blur(1.5px) saturate(.72) brightness(.86) contrast(1.04)!important;
 }
 @media(max-width:600px){
   .bg-video{
-    opacity:.15!important;
-    filter:blur(3px) saturate(.72) brightness(.46) contrast(1.03)!important;
-    transform:scale(1.035)!important;
+    opacity:.22!important;
+    filter:blur(.8px) saturate(.82) brightness(.50) contrast(1.05)!important;
+    transform:scale(1.02)!important;
   }
   body.light-theme .bg-video{
-    opacity:.11!important;
-    filter:blur(4px) saturate(.58) brightness(.84) contrast(1.02)!important;
+    opacity:.15!important;
+    filter:blur(1.2px) saturate(.68) brightness(.88) contrast(1.03)!important;
   }
 }
 .chess-card{position:relative;isolation:isolate;background:rgba(8,10,13,.94)!important;backdrop-filter:blur(18px) saturate(110%)!important;-webkit-backdrop-filter:blur(18px) saturate(110%)!important}
@@ -763,7 +763,7 @@ body.light-theme .rating-platform{background:rgba(0,0,0,.018)}
       <div class="modal-scroll" id="modalScroll">
         <div class="player-tabs">
           <button class="tab-btn press-effect active" data-tab="theme" type="button">theme songs</button>
-          <button class="tab-btn press-effect" data-tab="mine" type="button">my links</button>
+          <button class="tab-btn press-effect" data-tab="spotify" type="button">spotify</button>
         </div>
 
         <div id="themeTab">
@@ -772,23 +772,34 @@ body.light-theme .rating-platform{background:rgba(0,0,0,.018)}
               <span id="playBtnIcon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg></span>
             </button>
             <div class="player-info">
-              <div class="track-meta"><span class="track-live-dot"></span><span id="trackState">ready</span></div><div class="track-name" id="trackTitle">Montagem Celestial — Esperanza</div>
+              <div class="track-meta"><span class="track-live-dot"></span><span id="trackState">ready</span></div>
+              <div class="track-name" id="trackTitle">Montagem Celestial — Esperanza</div>
               <div class="progress-bar" id="progressBar" aria-label="Seek"><div class="progress-fill" id="progressFill"></div></div>
               <div class="time-row"><span id="curTime">0:00</span><span id="durTime">0:00</span></div>
             </div>
           </div>
         </div>
 
-        <div class="personal-tab" id="personalTab">
-          <div class="mine-links-card">
-            <div class="mine-kicker">official links</div>
-            <div class="mine-title">Official Knightly</div>
-            <div class="mine-sub">Watch the edit, visit the channel, or find everything in one place.</div>
-            <div class="mine-actions">
-              <a class="mine-action" href="https://www.youtube.com/@MANJIRO_SANO-dra" target="_blank" rel="noopener">YouTube ↗</a>
-              <a class="mine-action" href="https://linktr.ee/OfficialKnightly" target="_blank" rel="noopener">Linktree ↗</a>
-              <button class="mine-action mine-watch" id="watchEditBtn" type="button">Watch edit ▶</button>
+        <div class="spotify-tab" id="spotifyTab">
+          <div class="spotify-profile">
+            <img class="spotify-avatar-img" id="spotifyAvatar" alt="Official Knightly" src="https://github.com/akatsukixpain12-stack.png?size=128">
+            <div class="spotify-profile-main">
+              <div class="spotify-name">OFFICIAL KNIGHTLY</div>
+              <a class="spotify-link" href="https://open.spotify.com/user/31lhkfhfk3wqurtjdypdk5t7qxg4" target="_blank" rel="noopener">open Spotify profile ↗</a>
+              <div class="spotify-now" id="spotifyNow">Spotify • all playlists</div>
             </div>
+          </div>
+          <div class="spotify-tools">
+            <span class="track-note">all playlists</span>
+            <a class="stack-toggle" href="https://open.spotify.com/user/31lhkfhfk3wqurtjdypdk5t7qxg4" target="_blank" rel="noopener">open profile ↗</a>
+          </div>
+          <div class="playlist-stack" id="playlistStack">
+            <div class="playlist-card"><iframe data-src="https://open.spotify.com/embed/playlist/28Uf8nSzzk1tGlFgGiDB1M?utm_source=generator&theme=0" src="about:blank" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" title="Spotify playlist 1"></iframe></div>
+            <div class="playlist-card"><iframe data-src="https://open.spotify.com/embed/playlist/2YNR549KgybuThIqJTiIvW?utm_source=generator&theme=0" src="about:blank" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" title="Spotify playlist 2"></iframe></div>
+            <div class="playlist-card"><iframe data-src="https://open.spotify.com/embed/playlist/2LHjM7oUUUP8FkpiSH1VkW?utm_source=generator&theme=0" src="about:blank" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" title="Spotify playlist 3"></iframe></div>
+            <div class="playlist-card"><iframe data-src="https://open.spotify.com/embed/playlist/62tGPmnbGWeKmeNDHsV7jO?utm_source=generator&theme=0" src="about:blank" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" title="Spotify playlist 4"></iframe></div>
+            <div class="playlist-card"><iframe data-src="https://open.spotify.com/embed/playlist/30okxJP5OJht92w56Nwb6I?utm_source=generator&theme=0" src="about:blank" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" title="Hyper DNA playlist"></iframe></div>
+            <div class="playlist-card"><iframe data-src="https://open.spotify.com/embed/playlist/7JMYQZicAfUYRFt5XLObF3?utm_source=generator&theme=0" src="about:blank" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" title="Bengali songs playlist"></iframe></div>
           </div>
         </div>
         </div>
@@ -1084,13 +1095,14 @@ dragArea.addEventListener('pointermove',e=>{if(!isDragging)return;const delta=st
 dragArea.addEventListener('pointerup',e=>{if(!isDragging)return;isDragging=false;playerModal.style.transition='';try{dragArea.releasePointerCapture(e.pointerId)}catch(err){}snapSheet();});
 dragArea.addEventListener('pointercancel',()=>{isDragging=false;playerModal.style.transition='';snapSheet();});
 
-const personalTab = document.getElementById('personalTab');
+const spotifyTab = document.getElementById('spotifyTab');
 document.querySelectorAll('.tab-btn').forEach(btn => btn.addEventListener('click', () => {
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
-  const ispersonal = btn.dataset.tab === 'personal';
-  document.getElementById('themeTab').style.display = ispersonal ? 'none' : 'block';
-  personalTab.classList.toggle('active', ispersonal);
+  const isSpotify = btn.dataset.tab === 'spotify';
+  document.getElementById('themeTab').style.display = isSpotify ? 'none' : 'block';
+  spotifyTab?.classList.toggle('active', isSpotify);
+  if(isSpotify) window.requestAnimationFrame(()=>document.querySelectorAll('#spotifyTab iframe').forEach(f=>{ if(!f.dataset.loaded){ f.dataset.loaded='1'; f.src=f.dataset.src; } }));
 }));
 
 const playlistStack = document.getElementById('playlistStack');
@@ -1201,61 +1213,67 @@ if('mediaSession' in navigator){
 // outside a website's control, but we intentionally do not pause on visibility/pagehide.
 
 
+const RATING_TIMEOUT=4500;
+function withTimeout(url,options={}){
+  const controller=new AbortController();
+  const timer=setTimeout(()=>controller.abort(),RATING_TIMEOUT);
+  return fetch(url,{...options,signal:controller.signal}).finally(()=>clearTimeout(timer));
+}
+function paintCachedRating(key,cells){
+  try{
+    const cached=JSON.parse(localStorage.getItem(key)||'null');
+    if(cached?.time && Date.now()-cached.time<86400000 && cached.vals){
+      Object.entries(cached.vals).forEach(([k,v])=>{if(cells[k]&&v!=null)cells[k].textContent=v;});
+      return true;
+    }
+  }catch(e){}
+  return false;
+}
+function cacheRatings(key,vals){try{localStorage.setItem(key,JSON.stringify({time:Date.now(),vals}));}catch(e){}}
+
 async function loadChessRatings(){
   const status=document.getElementById('chessStatus');
   const cells={rapid:document.getElementById('chessRapid'),blitz:document.getElementById('chessBlitz'),bullet:document.getElementById('chessBullet')};
+  const cached=paintCachedRating('knightly_chesscom_ratings',cells);
   try{
-    const res=await fetch('https://api.chess.com/pub/player/chess_on_top12/stats?ts='+Date.now(),{cache:'no-store',headers:{'Accept':'application/json'}});
-    if(!res.ok) throw new Error('HTTP '+res.status);
-    const data=await res.json();
-    const rating=key=>data?.[key]?.last?.rating ?? null;
+    const res=await withTimeout('https://api.chess.com/pub/player/chess_on_top12/stats?ts='+Date.now(),{cache:'no-store',headers:{Accept:'application/json'}});
+    if(!res.ok)throw new Error('HTTP '+res.status);
+    const data=await res.json(), rating=k=>data?.[k]?.last?.rating??null;
     const vals={rapid:rating('chess_rapid'),blitz:rating('chess_blitz'),bullet:rating('chess_bullet')};
-    cells.rapid.textContent=vals.rapid ?? '—'; cells.blitz.textContent=vals.blitz ?? '—'; cells.bullet.textContent=vals.bullet ?? '—';
-    status.textContent=Object.values(vals).some(v=>v!=null) ? 'Chess.com • current public ratings' : 'Chess.com • no public rating returned';
-  }catch(e){ status.textContent='Chess.com • unable to reach ratings right now'; }
+    Object.entries(vals).forEach(([k,v])=>{cells[k].textContent=v??'—';});
+    cacheRatings('knightly_chesscom_ratings',vals);
+    status.textContent=Object.values(vals).some(v=>v!=null)?'Chess.com • updated just now':'Chess.com • no public rating';
+  }catch(e){if(!cached)status.textContent='Chess.com • loading unavailable';}
 }
-
 async function loadLichessRatings(){
   const status=document.getElementById('lichessStatus');
+  const cells={rapid:document.getElementById('lichessRapid'),blitz:document.getElementById('lichessBlitz'),bullet:document.getElementById('lichessBullet')};
+  const cached=paintCachedRating('knightly_lichess_ratings',cells);
   try{
-    const res=await fetch('https://lichess.org/api/user/DIVINE_JOHAN1?ts='+Date.now(),{cache:'no-store',headers:{'Accept':'application/json'}});
-    if(!res.ok) throw new Error('HTTP '+res.status);
-    const data=await res.json();
-    const p=data?.perfs||{};
-    document.getElementById('lichessRapid').textContent=p.rapid?.rating ?? '—';
-    document.getElementById('lichessBlitz').textContent=p.blitz?.rating ?? '—';
-    document.getElementById('lichessBullet').textContent=p.bullet?.rating ?? '—';
-    status.textContent='Lichess • current public ratings';
-  }catch(e){ status.textContent='Lichess • unable to reach ratings right now'; }
+    const res=await withTimeout('https://lichess.org/api/user/DIVINE_JOHAN1?ts='+Date.now(),{cache:'no-store',headers:{Accept:'application/json'}});
+    if(!res.ok)throw new Error('HTTP '+res.status);
+    const data=await res.json(),p=data?.perfs||{};
+    const vals={rapid:p.rapid?.rating??null,blitz:p.blitz?.rating??null,bullet:p.bullet?.rating??null};
+    Object.entries(vals).forEach(([k,v])=>{cells[k].textContent=v??'—';});
+    cacheRatings('knightly_lichess_ratings',vals);
+    status.textContent='Lichess • updated just now';
+  }catch(e){if(!cached)status.textContent='Lichess • loading unavailable';}
 }
-
-/*
- * World Chess does not expose a documented browser-friendly public profile
- * endpoint in the same way as Chess.com/Lichess. Try common public JSON routes,
- * but never fall back to a cached/old number. If none are available, the
- * profile link remains the source of truth.
- */
 async function loadWorldChessRatings(){
   const status=document.getElementById('worldStatus');
   const cells={rapid:document.getElementById('worldRapid'),blitz:document.getElementById('worldBlitz'),bullet:document.getElementById('worldBullet')};
   const source=document.getElementById('worldSourceText');
   const profileUrl='https://worldchess.com/profile/1232722';
-
-  // World Chess does not currently expose a documented browser-safe
-  // public JSON endpoint for this profile. Do not fabricate or cache a number.
-  // Keep every field explicitly live-source based and give the user a direct
-  // one-tap route to the current Online Elo.
-  cells.rapid.textContent='live ↗';
-  cells.blitz.textContent='live ↗';
-  cells.bullet.textContent='live ↗';
-  [cells.rapid,cells.blitz,cells.bullet].forEach((cell)=>{
-    cell.style.cursor='pointer';
-    cell.title='Open current World Chess Online Elo';
-    cell.onclick=()=>window.open(profileUrl,'_blank','noopener');
-  });
+  cells.rapid.textContent='live ↗';cells.blitz.textContent='live ↗';cells.bullet.textContent='live ↗';
+  [cells.rapid,cells.blitz,cells.bullet].forEach(cell=>{cell.style.cursor='pointer';cell.title='Open current World Chess Online Elo';cell.onclick=()=>window.open(profileUrl,'_blank','noopener');});
   status.innerHTML='World Chess • <a href="'+profileUrl+'" target="_blank" rel="noopener">current Online Elo ↗</a>';
   if(source)source.textContent='Live World Chess profile • tap a rating to open the current value';
 }
+Promise.allSettled([loadChessRatings(),loadLichessRatings()]);
+loadWorldChessRatings();
+setInterval(()=>{Promise.allSettled([loadChessRatings(),loadLichessRatings()]);},60000);
+setInterval(loadWorldChessRatings,120000);
+
 loadChessRatings();
 loadLichessRatings();
 loadWorldChessRatings();
@@ -1741,4 +1759,22 @@ body:not(.light-theme) .play-btn.is-playing{box-shadow:0 0 0 1px rgba(255,255,25
 .image-link{overflow:hidden}.brand-logo-img{width:28px;height:28px;object-fit:contain;border-radius:7px;display:block;filter:drop-shadow(0 2px 5px rgba(0,0,0,.18));transition:transform .25s ease}.image-link:hover .brand-logo-img{transform:scale(1.08)}
 .rating-platform-head{display:flex;align-items:center;gap:9px}.rating-platform-head strong{display:flex;align-items:center;gap:7px}.rating-platform-logo{width:22px;height:22px;object-fit:contain;border-radius:5px;display:block}.world-live-link{font:8px 'JetBrains Mono',monospace;color:var(--gold);text-decoration:none;margin-left:auto}.world-live-link:hover{text-decoration:underline}
 .world-live-card{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:9px;padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:linear-gradient(135deg,rgba(255,255,255,.045),rgba(255,255,255,.015))}.world-live-copy{min-width:0}.world-live-title{font-size:11px;font-weight:600}.world-live-sub{font:8px/1.5 'JetBrains Mono',monospace;color:var(--faint);margin-top:2px}.world-live-btn{flex:0 0 auto;padding:8px 10px;border:1px solid var(--line2);border-radius:9px;background:transparent;color:var(--text);text-decoration:none;font:8px 'JetBrains Mono',monospace}.world-live-btn:hover{border-color:var(--gold);color:var(--gold)}
+</style>
+
+<style id="knightly-v27-fixes">
+/* V27: clearer chess edit + working Theme/Spotify music tabs. */
+.bg-video{image-rendering:auto!important}
+.spotify-tab{display:none}
+.spotify-tab.active{display:block}
+.spotify-profile{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.spotify-avatar-img{width:42px;height:42px;border-radius:50%;object-fit:cover;border:1px solid var(--line2);background:var(--surface2)}
+.spotify-profile-main{min-width:0;flex:1}
+.spotify-name{font-size:13px;font-weight:650}
+.spotify-link{font:9px 'JetBrains Mono',monospace;color:var(--gold);text-decoration:none}
+.spotify-now{font:8px 'JetBrains Mono',monospace;color:var(--faint);margin-top:3px}
+.spotify-tools{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.spotify-tools .track-note{font:8px 'JetBrains Mono',monospace;color:var(--faint);text-transform:uppercase;letter-spacing:1px}
+#spotifyTab .playlist-card iframe{display:block;width:100%;height:152px;border:0;border-radius:10px;background:#000}
+#spotifyTab .playlist-card{content-visibility:auto;contain:content}
+@media(max-width:600px){#spotifyTab .playlist-card iframe{height:152px}}
 </style>
