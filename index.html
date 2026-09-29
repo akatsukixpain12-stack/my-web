@@ -196,9 +196,9 @@ body.light-theme .modal-drag-bar { background: rgba(0,0,0,.25); }
 .player-tabs{display:flex;gap:6px;margin-bottom:14px}
 .tab-btn{flex:1;padding:9px;border:1px solid var(--line);border-radius:11px;background:transparent;color:var(--faint);font:10px 'JetBrains Mono',monospace;letter-spacing:.5px;cursor:pointer}
 .tab-btn.active{color:var(--gold);border-color:var(--gold2);background:var(--surface2)}
-.spotify-tab{display:none}.spotify-tab.active{display:block}
+.personal-tab{display:none}.personal-tab.active{display:block}
 
-/* Playlist / Song Switcher Selector */
+/* Song selector */
 .track-selector{display:flex;flex-direction:column;gap:4px;margin:4px 0 14px}
 .track-option-btn{width:100%;display:flex;align-items:center;gap:11px;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:11px 10px;color:var(--text);cursor:pointer;font:600 12px Inter,sans-serif;transition:color .2s ease,transform .2s ease,border-color .2s ease}
 .track-option-btn::before{content:'▶';width:22px;height:22px;border:1px solid var(--line2);border-radius:50%;display:grid;place-items:center;font-size:8px;color:var(--faint);flex:0 0 22px}
@@ -221,14 +221,14 @@ body.light-theme .modal-drag-bar { background: rgba(0,0,0,.25); }
 .progress-bar{height:5px;background:var(--surface2);border-radius:6px;cursor:pointer;overflow:hidden}.progress-fill{height:100%;width:0;background:var(--gold);border-radius:inherit}
 .time-row{display:flex;justify-content:space-between;margin-top:6px;color:var(--faint);font:9px 'JetBrains Mono',monospace}
 
-.spotify-profile{display:flex;align-items:center;gap:10px;margin-bottom:12px}
-.spotify-avatar-img{width:38px;height:38px;border-radius:50%;object-fit:cover;background:#181819;border:1px solid var(--line2)}
-.spotify-name{font-size:12px;font-weight:500}.spotify-link{font:9px 'JetBrains Mono',monospace;color:var(--dim);text-decoration:none}
-.spotify-link:hover{color:var(--gold)}
-.spotify-profile-main{min-width:0;flex:1}
-.spotify-now{font:8px 'JetBrains Mono',monospace;color:var(--faint);margin-top:3px}
+.personal-profile{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.personal-avatar-img{width:38px;height:38px;border-radius:50%;object-fit:cover;background:#181819;border:1px solid var(--line2)}
+.personal-name{font-size:12px;font-weight:500}.personal-link{font:9px 'JetBrains Mono',monospace;color:var(--dim);text-decoration:none}
+.personal-link:hover{color:var(--gold)}
+.personal-profile-main{min-width:0;flex:1}
+.personal-now{font:8px 'JetBrains Mono',monospace;color:var(--faint);margin-top:3px}
 
-.spotify-tools{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.personal-tools{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
 .stack-toggle{border:1px solid var(--line);background:transparent;color:var(--faint);border-radius:9px;padding:6px 11px;font:9px 'JetBrains Mono',monospace;cursor:pointer;transition:all .25s ease}.stack-toggle:hover,.stack-toggle[aria-pressed='true']{border-color:var(--gold2);color:var(--gold);background:var(--surface2)}
 .playlist-stack.is-stacked{gap:0;padding:8px 10px 18px 4px;position:relative;overflow:visible}
 .playlist-stack.is-stacked .playlist-card{margin-top:-112px;transform:translateX(0) scale(.985);box-shadow:0 10px 26px rgba(0,0,0,.18);transition:transform .32s ease,box-shadow .32s ease,margin-top .32s ease;position:relative}
@@ -248,15 +248,15 @@ body.light-theme .modal-drag-bar { background: rgba(0,0,0,.25); }
   display:flex;flex-direction:column;gap:12px;max-height:none;overflow:visible;padding-right:2px;
   transition:max-height .35s ease, gap .35s ease;
 }
-.spotify-tab.expanded .playlist-stack{
+.personal-tab.expanded .playlist-stack{
   max-height:950px;gap:18px;overflow-y:auto;
 }
 .playlist-card{border:1px solid var(--line);border-radius:12px;padding:4px;background:var(--surface);overflow:hidden}
-.spotify-embed-container{position:relative;width:100%;min-height:152px}
-.spotify-embed-container iframe{width:100%;height:152px;border:0;border-radius:10px;background:transparent}
+.personal-embed-container{position:relative;width:100%;min-height:152px}
+.personal-embed-container iframe{width:100%;height:152px;border:0;border-radius:10px;background:transparent}
 
-.spotify-tab.expanded .spotify-embed-container,
-.spotify-tab.expanded .spotify-embed-container iframe {
+.personal-tab.expanded .personal-embed-container,
+.personal-tab.expanded .personal-embed-container iframe {
   min-height: 352px;
   height: 352px;
 }
@@ -279,16 +279,16 @@ body.light-theme .brand-icon-svg{color:#7d5b24}
 .play-btn.is-playing::before{border-color:var(--gold2);animation:playRing 1.8s ease-in-out infinite}
 @keyframes playRing{0%,100%{transform:scale(.96);opacity:.35}50%{transform:scale(1.06);opacity:1}}
 .play-btn.is-playing{color:var(--gold);border-color:var(--gold2)}
-.spotify-visual{display:none!important}
-.spotify-vinyl{width:34px;height:34px;border-radius:50%;background:radial-gradient(circle,#f0d39a 0 4px,#171717 4.5px 7px,#0a0a0a 7.5px 100%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.16),0 4px 15px rgba(0,0,0,.22)}
-.spotify-visual.is-playing .spotify-vinyl{animation:vinylSpin 2.2s linear infinite}.spotify-eq{display:flex;align-items:center;gap:2px;height:24px}.spotify-eq i{display:block;width:3px;height:7px;border-radius:3px;background:var(--gold)}.spotify-visual.is-playing .spotify-eq i{animation:eq 650ms ease-in-out infinite alternate}.spotify-visual.is-playing .spotify-eq i:nth-child(2){animation-delay:-.18s}.spotify-visual.is-playing .spotify-eq i:nth-child(3){animation-delay:-.32s}.spotify-visual.is-playing .spotify-eq i:nth-child(4){animation-delay:-.1s}.spotify-visual.is-playing .spotify-eq i:nth-child(5){animation-delay:-.25s}
+.personal-visual{display:none!important}
+.personal-vinyl{width:34px;height:34px;border-radius:50%;background:radial-gradient(circle,#f0d39a 0 4px,#171717 4.5px 7px,#0a0a0a 7.5px 100%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.16),0 4px 15px rgba(0,0,0,.22)}
+.personal-visual.is-playing .personal-vinyl{animation:vinylSpin 2.2s linear infinite}.personal-eq{display:flex;align-items:center;gap:2px;height:24px}.personal-eq i{display:block;width:3px;height:7px;border-radius:3px;background:var(--gold)}.personal-visual.is-playing .personal-eq i{animation:eq 650ms ease-in-out infinite alternate}.personal-visual.is-playing .personal-eq i:nth-child(2){animation-delay:-.18s}.personal-visual.is-playing .personal-eq i:nth-child(3){animation-delay:-.32s}.personal-visual.is-playing .personal-eq i:nth-child(4){animation-delay:-.1s}.personal-visual.is-playing .personal-eq i:nth-child(5){animation-delay:-.25s}
 @keyframes vinylSpin{to{transform:rotate(360deg)}}@keyframes eq{from{height:5px}to{height:21px}}
-.spotify-network{display:none!important}
-.spotify-tab .playlist-card{transition:border-color .2s ease,box-shadow .2s ease}
-.spotify-tab .playlist-card iframe{display:block;width:100%;height:352px;min-height:352px;border:0;border-radius:10px;background:transparent}
-body.light-theme .spotify-vinyl{background:radial-gradient(circle,#d3ad63 0 4px,#f0f0f2 4.5px 7px,#c9c9cc 7.5px 100%)}
+.personal-network{display:none!important}
+.personal-tab .playlist-card{transition:border-color .2s ease,box-shadow .2s ease}
+.personal-tab .playlist-card iframe{display:block;width:100%;height:352px;min-height:352px;border:0;border-radius:10px;background:transparent}
+body.light-theme .personal-vinyl{background:radial-gradient(circle,#d3ad63 0 4px,#f0f0f2 4.5px 7px,#c9c9cc 7.5px 100%)}
 body.light-theme .github-icon,body.light-theme .x-icon{background:#111}
-@media(max-width:600px){.hero{min-height:76svh}.wrap{padding-left:14px;padding-right:14px}.spotify-visual{width:70px}.spotify-network{margin-bottom:8px}.glass{backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}}
+@media(max-width:600px){.hero{min-height:76svh}.wrap{padding-left:14px;padding-right:14px}.personal-visual{width:70px}.personal-network{margin-bottom:8px}.glass{backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}}
 
 .press-effect{transition:transform .15s ease,opacity .15s ease}
 .press-effect:active{transform:scale(.96);opacity:.85}
@@ -367,7 +367,7 @@ section{position:relative}section>.label{display:flex;align-items:center;gap:8px
 .viz-orb-ring{position:absolute;left:50%;top:50%;border:1px solid rgba(240,211,154,.22);border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;opacity:.4}.ring-1{width:58px;height:58px}.ring-2{width:82px;height:82px;border-style:dashed;opacity:.18}.audio-viz-pro.is-playing .ring-1{animation:ringPulse 1.2s ease-out infinite}.audio-viz-pro.is-playing .ring-2{animation:ringPulse 1.8s ease-out infinite .2s}@keyframes ringPulse{0%{transform:translate(-50%,-50%) scale(.82);opacity:.5}100%{transform:translate(-50%,-50%) scale(1.22);opacity:0}}
 .play-btn{background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.1),var(--surface2) 65%)}.play-btn.is-playing{box-shadow:0 0 0 1px var(--gold2),0 0 26px color-mix(in srgb,var(--track-accent,var(--gold)) 18%,transparent)}
 .float-player{color:var(--gold)}.float-player.playing{border-color:var(--gold2)}
-.spotify-visual.is-playing .spotify-vinyl{box-shadow:inset 0 0 0 1px rgba(255,255,255,.18),0 0 22px rgba(240,211,154,.25)}
+.personal-visual.is-playing .personal-vinyl{box-shadow:inset 0 0 0 1px rgba(255,255,255,.18),0 0 22px rgba(240,211,154,.25)}
 @media(max-width:600px){.hero-halo{width:78vw;height:78vw}.orbit-a{width:92vw;height:92vw}.orbit-b{width:68vw;height:68vw}.audio-viz-pro{height:118px}.wrap{padding-bottom:100px}}
 @media(prefers-reduced-motion:reduce){.hero-halo,.hero-orbit{animation:none}.link-card::after{display:none}.name span,.name span::after{animation:none!important}.name span.scrambling{font-family:inherit;font-size:inherit;letter-spacing:inherit;text-shadow:none}}
 
@@ -657,11 +657,18 @@ body.light-theme .bg-video{opacity:.10;filter:blur(16px) saturate(.45) brightnes
       </div>
 
       <div class="rating-platform">
-        <div class="rating-platform-head"><strong>World Chess</strong><a href="https://worldchess.com/profile/1232722" target="_blank" rel="noopener">profile ↗</a></div>
+        <div class="rating-platform-head">
+          <strong><img class="rating-platform-logo" src="worldchess.webp" alt="">World Chess</strong>
+          <a class="world-live-link" href="https://worldchess.com/profile/1232722" target="_blank" rel="noopener">live profile ↗</a>
+        </div>
         <div class="chess-ratings">
           <div class="chess-rating"><span>Rapid</span><strong id="worldRapid">—</strong></div>
           <div class="chess-rating"><span>Blitz</span><strong id="worldBlitz">—</strong></div>
           <div class="chess-rating"><span>Bullet</span><strong id="worldBullet">—</strong></div>
+        </div>
+        <div class="world-live-card">
+          <div class="world-live-copy"><div class="world-live-title">Online Elo • live source</div><div class="world-live-sub" id="worldSourceText">Opening your current World Chess profile keeps the number live — no cached Elo.</div></div>
+          <a class="world-live-btn" href="https://worldchess.com/profile/1232722" target="_blank" rel="noopener">Open live</a>
         </div>
       </div>
 
@@ -689,15 +696,21 @@ body.light-theme .bg-video{opacity:.10;filter:blur(16px) saturate(.45) brightnes
       <a class="link-card social-icon-link" href="https://www.youtube.com/@MANJIRO_SANO-dra" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube">
         <svg class="brand-icon-svg youtube-svg" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.9V8.1l6.8 3.9-6.8 3.9Z"/></svg>
       </a>
-      <a class="link-card social-icon-link" href="https://androai.ai.studio" target="_blank" rel="noopener" aria-label="Website" title="Andromeda AI">
-        <svg class="brand-icon-svg website-svg" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 9h-3.05a15.8 15.8 0 0 0-1.13-5.02A8.03 8.03 0 0 1 18.9 11ZM12 4.05c.8 1.06 1.7 3.55 1.84 6.95h-3.68C10.3 7.6 11.2 5.11 12 4.05ZM9.28 5.98A15.8 15.8 0 0 0 8.15 11H5.1a8.03 8.03 0 0 1 4.18-5.02ZM5.1 13h3.05c.18 2.02.58 3.76 1.13 5.02A8.03 8.03 0 0 1 5.1 13Zm6.9 6.95c-.8-1.06-1.7-3.55-1.84-6.95h3.68C13.7 16.4 12.8 18.89 12 19.95ZM14.72 18.02A15.8 15.8 0 0 0 15.85 13h3.05a8.03 8.03 0 0 1-4.18 5.02Z"/></svg>
+      <a class="link-card social-icon-link" href="https://androai.ai.studio" target="_blank" rel="noopener" aria-label="Andromeda AI" title="Andromeda AI">
+        <svg class="brand-icon-svg website-svg" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 9h-3.05a15.8 15.8 0 0 0-1.13-5.02A8.03 8.03 0 0 1 18.9 11ZM12 4.05c.8 1.06 1.7 3.55 1.84 6.95h-3.68C10.3 7.6 11.2 5.11 12 4.05ZM9.28 5.98A15.8 15.8 0 0 0 8.15 11H5.1a8.03 8.03 0 0 1 4.18-5.02ZM5.1 13h3.05c.18 2.02.58 3.76 1.13 5.02A8.03 8.03 0 0 0 5.1 13Zm6.9 6.95c-.8-1.06-1.7-3.55-1.84-6.95h3.68C13.7 16.4 12.8 18.89 12 19.95ZM14.72 18.02A15.8 15.8 0 0 0 15.85 13h3.05a8.03 8.03 0 0 0 4.18 5.02Z"/></svg>
       </a>
-      <a class="link-card social-icon-link" href="https://worldchess.com/profile/1232722" target="_blank" rel="noopener" aria-label="World Chess" title="World Chess">♟</a>
-      <a class="link-card social-icon-link" href="https://lichess.org/@/DIVINE_JOHAN1" target="_blank" rel="noopener" aria-label="Lichess" title="Lichess">♞</a>
+      <a class="link-card social-icon-link image-link" href="https://www.chess.com/member/chess_on_top12" target="_blank" rel="noopener" aria-label="Chess.com" title="Chess.com">
+        <img class="brand-logo-img" src="chesscom.png" alt="Chess.com">
+      </a>
+      <a class="link-card social-icon-link image-link" href="https://worldchess.com/profile/1232722" target="_blank" rel="noopener" aria-label="World Chess" title="World Chess">
+        <img class="brand-logo-img" src="worldchess.webp" alt="World Chess">
+      </a>
+      <a class="link-card social-icon-link image-link" href="https://lichess.org/@/DIVINE_JOHAN1" target="_blank" rel="noopener" aria-label="Lichess" title="Lichess">
+        <img class="brand-logo-img" src="lichess.jpg" alt="Lichess">
+      </a>
       <a class="link-card social-icon-link" href="https://linktr.ee/OfficialKnightly" target="_blank" rel="noopener" aria-label="Linktree" title="Linktree">
         <span style="font:700 12px 'JetBrains Mono',monospace;letter-spacing:-.4px">linktree</span>
       </a>
-
     </div>
   </section>
 
@@ -737,7 +750,7 @@ body.light-theme .bg-video{opacity:.10;filter:blur(16px) saturate(.45) brightnes
           </div>
         </div>
 
-        <div class="spotify-tab" id="spotifyTab">
+        <div class="personal-tab" id="personalTab">
           <div class="mine-links-card">
             <div class="mine-kicker">official links</div>
             <div class="mine-title">Official Knightly</div>
@@ -772,7 +785,7 @@ body.light-theme .bg-video{opacity:.10;filter:blur(16px) saturate(.45) brightnes
 
 const bgVideo=document.getElementById('bgVideo');
 if(bgVideo){
-  const candidates=['background.mp4','bg.mp4','background-video.mp4','bg-video.mp4','edit.mp4','video.mp4','assets/background.mp4','assets/bg.mp4','assets/edit.mp4','assets/video.mp4'];
+  const candidates=['chessedit.mp4','background.mp4','bg.mp4','background-video.mp4','bg-video.mp4','edit.mp4','video.mp4','assets/background.mp4','assets/bg.mp4','assets/edit.mp4','assets/video.mp4'];
   (async()=>{
     for(const src of candidates){
       try{
@@ -790,7 +803,7 @@ const editWatchVideo=document.getElementById('editWatchVideo');
 const editWatchClose=document.getElementById('editWatchClose');
 function openEditViewer(){
   if(!editWatchOverlay||!editWatchVideo||!bgVideo?.src)return;
-  editWatchVideo.src=bgVideo.currentSrc||bgVideo.src;
+  editWatchVideo.src='chessedit.mp4';
   editWatchOverlay.classList.add('open');
   editWatchOverlay.setAttribute('aria-hidden','false');
   document.body.style.overflow='hidden';
@@ -967,9 +980,9 @@ setInterval(() => {
 
 const DEFAULT_AVATAR = 'https://github.com/akatsukixpain12-stack.png?size=128';
 const discordAvatarEl = document.getElementById('discordAvatar');
-const spotifyAvatarEl = document.getElementById('spotifyAvatar');
+const personalAvatarEl = document.getElementById('personalAvatar');
 discordAvatarEl.addEventListener('error', () => { discordAvatarEl.src = DEFAULT_AVATAR; });
-spotifyAvatarEl.addEventListener('error', () => { spotifyAvatarEl.src = DEFAULT_AVATAR; });
+personalAvatarEl.addEventListener('error', () => { personalAvatarEl.src = DEFAULT_AVATAR; });
 
 async function fetchLanyard() {
   try {
@@ -985,7 +998,7 @@ async function fetchLanyard() {
       const ext = String(u.avatar).startsWith('a_') ? 'gif' : 'png';
       const url = `https://cdn.discordapp.com/avatars/${u.id}/${u.avatar}.${ext}?size=128`;
       discordAvatarEl.src = url;
-      spotifyAvatarEl.src = url;
+      personalAvatarEl.src = url;
     }
   } catch (e) {
     document.getElementById('discordName').textContent = 'Official Knightly';
@@ -996,9 +1009,9 @@ async function fetchLanyard() {
 fetchLanyard();
 setInterval(fetchLanyard, 30000);
 
-const spotifyFrames = [...document.querySelectorAll('.spotify-tab iframe')];
-function setSpotifyVisual(){}
-function pauseAllSpotify(){}
+const personalFrames = [...document.querySelectorAll('.personal-tab iframe')];
+function setpersonalVisual(){}
+function pauseAllpersonal(){}
 
 const overlay = document.getElementById('modalOverlay');
 const playerModal = document.getElementById('playerModal');
@@ -1025,13 +1038,13 @@ dragArea.addEventListener('pointermove',e=>{if(!isDragging)return;const delta=st
 dragArea.addEventListener('pointerup',e=>{if(!isDragging)return;isDragging=false;playerModal.style.transition='';try{dragArea.releasePointerCapture(e.pointerId)}catch(err){}snapSheet();});
 dragArea.addEventListener('pointercancel',()=>{isDragging=false;playerModal.style.transition='';snapSheet();});
 
-const spotifyTab = document.getElementById('spotifyTab');
+const personalTab = document.getElementById('personalTab');
 document.querySelectorAll('.tab-btn').forEach(btn => btn.addEventListener('click', () => {
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
-  const isSpotify = btn.dataset.tab === 'spotify';
-  document.getElementById('themeTab').style.display = isSpotify ? 'none' : 'block';
-  spotifyTab.classList.toggle('active', isSpotify);
+  const ispersonal = btn.dataset.tab === 'personal';
+  document.getElementById('themeTab').style.display = ispersonal ? 'none' : 'block';
+  personalTab.classList.toggle('active', ispersonal);
 }));
 
 const playlistStack = document.getElementById('playlistStack');
@@ -1179,22 +1192,14 @@ async function loadLichessRatings(){
 async function loadWorldChessRatings(){
   const status=document.getElementById('worldStatus');
   const cells={rapid:document.getElementById('worldRapid'),blitz:document.getElementById('worldBlitz'),bullet:document.getElementById('worldBullet')};
+  const source=document.getElementById('worldSourceText');
   const profileUrl='https://worldchess.com/profile/1232722';
   const apiUrls=[
-    'https://api.worldchess.com/api/profile/1232722',
     'https://api.worldchess.com/profile/1232722',
-    'https://api.worldchess.com/api/user/1232722',
-    'https://api.worldchess.com/user/1232722'
+    'https://api.worldchess.com/api/profile/1232722',
+    'https://api.worldchess.com/user/1232722',
+    'https://api.worldchess.com/api/user/1232722'
   ];
-  const setVals=(vals)=>{
-    const got=Object.values(vals).some(v=>v!=null);
-    if(!got)return false;
-    cells.rapid.textContent=vals.rapid??'—';
-    cells.blitz.textContent=vals.blitz??'—';
-    cells.bullet.textContent=vals.bullet??'—';
-    status.textContent='World Chess • live Online Elo';
-    return true;
-  };
   const pick=(obj,keys)=>{
     for(const k of keys){
       const v=k.split('.').reduce((o,x)=>o?.[x],obj);
@@ -1202,36 +1207,32 @@ async function loadWorldChessRatings(){
     }
     return null;
   };
+  const put=(vals)=>{
+    const got=Object.values(vals).some(v=>v!==null&&v!==undefined&&v!=='');
+    if(!got)return false;
+    cells.rapid.textContent=vals.rapid??'—';
+    cells.blitz.textContent=vals.blitz??'—';
+    cells.bullet.textContent=vals.bullet??'—';
+    status.textContent='World Chess • current Online Elo';
+    if(source)source.textContent='Live Online Elo returned by World Chess.';
+    return true;
+  };
   for(const url of apiUrls){
     try{
       const res=await fetch(url+'?ts='+Date.now(),{cache:'no-store',headers:{Accept:'application/json'}});
       if(!res.ok)continue;
       const data=await res.json();
-      const root=data?.data||data?.profile||data;
-      if(setVals({
-        rapid:pick(root,['rapid.rating','rapid.onlineElo','ratings.rapid.rating','onlineElo.rapid','online_elo.rapid']),
-        blitz:pick(root,['blitz.rating','blitz.onlineElo','ratings.blitz.rating','onlineElo.blitz','online_elo.blitz']),
-        bullet:pick(root,['bullet.rating','bullet.onlineElo','ratings.bullet.rating','onlineElo.bullet','online_elo.bullet'])
+      const root=data?.data||data?.profile||data?.user||data;
+      if(put({
+        rapid:pick(root,['rapid.rating','rapid.onlineElo','rapid.elo','ratings.rapid.rating','onlineElo.rapid','online_elo.rapid']),
+        blitz:pick(root,['blitz.rating','blitz.onlineElo','blitz.elo','ratings.blitz.rating','onlineElo.blitz','online_elo.blitz']),
+        bullet:pick(root,['bullet.rating','bullet.onlineElo','bullet.elo','ratings.bullet.rating','onlineElo.bullet','online_elo.bullet'])
       }))return;
     }catch(e){}
   }
-  // Last live attempt: read the public profile page itself. No value is hard-coded or cached.
-  try{
-    const res=await fetch(profileUrl+'?ts='+Date.now(),{cache:'no-store'});
-    if(res.ok){
-      const html=await res.text();
-      const read=(name)=>{
-        const patterns=[
-          new RegExp('"'+name+'"\\s*:\\s*\\{[^}]{0,500}?"rating"\\s*:\\s*(\\d+(?:\\.\\d+)?)','i'),
-          new RegExp(name+'[^\\d]{0,180}(\\d{2,5})','i')
-        ];
-        for(const p of patterns){const m=html.match(p);if(m)return m[1];}
-        return null;
-      };
-      if(setVals({rapid:read('rapid'),blitz:read('blitz'),bullet:read('bullet')}))return;
-    }
-  }catch(e){}
+  cells.rapid.textContent='—';cells.blitz.textContent='—';cells.bullet.textContent='—';
   status.innerHTML='World Chess • <a href="'+profileUrl+'" target="_blank" rel="noopener">open live profile ↗</a>';
+  if(source)source.textContent='World Chess does not expose a documented browser API here, so no old/cached rating is shown.';
 }
 
 loadChessRatings();
@@ -1243,7 +1244,7 @@ setInterval(loadWorldChessRatings,30000);
 
 </script>
 <style>
-.audio-viz-pro,.spotify-network,.spotify-visual,.modal-close{display:none!important}
+.audio-viz-pro,.personal-network,.personal-visual,.modal-close{display:none!important}
 .track-selector{display:none!important}
 .links-grid .link-card.glass{background:transparent!important;border:0!important;box-shadow:none!important}
 .links-grid .link-card{border:0!important}
@@ -1486,7 +1487,7 @@ body.light-theme .pinterest-card{background:linear-gradient(145deg,rgba(255,255,
 
 .progress-bar{cursor:pointer;touch-action:none}.progress-bar:focus-visible{outline:1px solid var(--gold);outline-offset:4px}.progress-fill{pointer-events:none}
 
-/* iOS-style segmented control for Theme Songs / Spotify. */
+/* iOS-style segmented control for Theme Songs / personal. */
 .player-tabs{display:flex;gap:3px;margin-bottom:14px;padding:3px;border:1px solid rgba(255,255,255,.09);border-radius:18px;background:rgba(255,255,255,.045);box-shadow:inset 0 1px 0 rgba(255,255,255,.035)}
 .tab-btn{flex:1;min-height:36px;padding:8px 10px;border:0;border-radius:15px;background:transparent;color:var(--faint);font:600 10px 'JetBrains Mono',monospace;letter-spacing:.35px;cursor:pointer;transition:background .22s ease,color .22s ease,box-shadow .22s ease,transform .22s ease}
 .tab-btn.active{color:var(--text);background:rgba(255,255,255,.11);box-shadow:0 1px 5px rgba(0,0,0,.35),inset 0 0 0 1px rgba(255,255,255,.045)}
@@ -1494,7 +1495,7 @@ body.light-theme .pinterest-card{background:linear-gradient(145deg,rgba(255,255,
 body.light-theme .player-tabs{background:rgba(0,0,0,.035);border-color:rgba(0,0,0,.08)}
 body.light-theme .tab-btn.active{background:rgba(255,255,255,.96);box-shadow:0 1px 5px rgba(0,0,0,.10),inset 0 0 0 1px rgba(0,0,0,.035);color:#111113}
 
-/* Spotify deck: preserve the stacked/unstacked behavior without edge clipping. */
+/* personal deck: preserve the stacked/unstacked behavior without edge clipping. */
 .playlist-stack{display:flex;flex-direction:column;gap:14px!important;overflow:visible!important}
 .playlist-stack.is-stacked{display:grid!important;grid-template-columns:1fr!important;gap:0!important;padding:10px 4px 26px!important;min-height:225px;position:relative;overflow:visible!important}
 .playlist-stack.is-stacked .playlist-card{grid-column:1;grid-row:1;margin:0!important;width:100%;height:178px;overflow:hidden;transform:none!important;transition:transform .38s cubic-bezier(.16,1,.3,1),filter .38s,opacity .38s,box-shadow .38s!important;border-radius:16px!important}
@@ -1715,4 +1716,8 @@ body:not(.light-theme) .play-btn.is-playing{box-shadow:0 0 0 1px rgba(255,255,25
 /* Corner edit control */
 .edit-corner-btn{position:fixed;left:16px;bottom:max(18px,env(safe-area-inset-bottom));z-index:65;display:flex;align-items:center;gap:8px;padding:10px 13px;border:1px solid rgba(255,255,255,.15);border-radius:999px;background:rgba(8,8,9,.72);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);color:#f5f5f7;box-shadow:0 10px 30px rgba(0,0,0,.48);font:9px 'JetBrains Mono',monospace;letter-spacing:.6px;cursor:pointer;transition:transform .25s,border-color .25s,background .25s}.edit-corner-btn:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.3);background:rgba(20,20,22,.84)}.edit-corner-btn b{font-size:12px;font-weight:500}.edit-corner-dot{width:6px;height:6px;border-radius:50%;background:#fff;box-shadow:0 0 10px rgba(255,255,255,.7)}.edit-watch-shell video{transform:scale(1.035);transform-origin:center;}
 @media(max-width:600px){.edit-corner-btn{left:12px;padding:9px 11px;font-size:8px}.edit-watch-shell video{transform:scale(1.025)}}
+
+.image-link{overflow:hidden}.brand-logo-img{width:28px;height:28px;object-fit:contain;border-radius:7px;display:block;filter:drop-shadow(0 2px 5px rgba(0,0,0,.18));transition:transform .25s ease}.image-link:hover .brand-logo-img{transform:scale(1.08)}
+.rating-platform-head{display:flex;align-items:center;gap:9px}.rating-platform-head strong{display:flex;align-items:center;gap:7px}.rating-platform-logo{width:22px;height:22px;object-fit:contain;border-radius:5px;display:block}.world-live-link{font:8px 'JetBrains Mono',monospace;color:var(--gold);text-decoration:none;margin-left:auto}.world-live-link:hover{text-decoration:underline}
+.world-live-card{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:9px;padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:linear-gradient(135deg,rgba(255,255,255,.045),rgba(255,255,255,.015))}.world-live-copy{min-width:0}.world-live-title{font-size:11px;font-weight:600}.world-live-sub{font:8px/1.5 'JetBrains Mono',monospace;color:var(--faint);margin-top:2px}.world-live-btn{flex:0 0 auto;padding:8px 10px;border:1px solid var(--line2);border-radius:9px;background:transparent;color:var(--text);text-decoration:none;font:8px 'JetBrains Mono',monospace}.world-live-btn:hover{border-color:var(--gold);color:var(--gold)}
 </style>
