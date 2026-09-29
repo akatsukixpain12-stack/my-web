@@ -566,7 +566,17 @@ body.light-theme .bg-video{opacity:.10;filter:blur(16px) saturate(.45) brightnes
 .chess-card>.chess-status{padding-left:2px}
 @media(max-width:600px){.bg-video{opacity:.13;filter:blur(12px) saturate(.55) brightness(.50)}body.light-theme .bg-video{opacity:.07}.rating-platform-head strong{font-size:10px}}
 </style>
-</head>
+<style id="smart-background-and-readable-ratings">
+.bg-video{opacity:.045!important;filter:blur(30px) saturate(.35) brightness(.24)!important;transform:scale(1.16)!important}
+body.light-theme .bg-video{opacity:.025!important;filter:blur(34px) saturate(.25) brightness(1.02)!important}
+.chess-card{position:relative;isolation:isolate;background:rgba(8,10,13,.94)!important;backdrop-filter:blur(18px) saturate(110%)!important;-webkit-backdrop-filter:blur(18px) saturate(110%)!important}
+body.light-theme .chess-card{background:rgba(255,255,255,.94)!important}
+.chess-card>*{position:relative;z-index:2}
+.rating-platform{background:rgba(255,255,255,.025);border:1px solid var(--line);border-radius:14px;padding:11px}
+body.light-theme .rating-platform{background:rgba(0,0,0,.018)}
+.chess-rating strong{font-variant-numeric:tabular-nums}
+.world-live-card{background:rgba(255,255,255,.035)!important}
+</style></head>
 
 <div class="scroll-progress" id="scrollProgress"></div>
 <body class="light-theme">
@@ -601,7 +611,7 @@ body.light-theme .bg-video{opacity:.10;filter:blur(16px) saturate(.45) brightnes
     <div class="hero-halo" aria-hidden="true"></div>
     <div class="hero-orbit orbit-a" aria-hidden="true"></div><div class="hero-orbit orbit-b" aria-hidden="true"></div>
     <div class="eyebrow"><span class="dot"></span>welcome</div>
-    <h1 class="name"><span id="typedName">Statik.Flick</span></h1>
+    <h1 class="name"><span id="typedName">Official Knightly</span></h1>
     <div class="role"><span id="roleText" class="show">web developer</span></div>
   </header>
 
@@ -609,12 +619,12 @@ body.light-theme .bg-video{opacity:.10;filter:blur(16px) saturate(.45) brightnes
     <div class="label">discord status</div>
     <a class="glass discord-card press-effect" href="https://discord.com/users/1289053723041202186" target="_blank" rel="noopener">
       <div class="avatar-wrap">
-        <img class="avatar" id="discordAvatar" alt="Official Knightly" src="https://github.com/akatsukixpain12-stack.png?size=128" onerror="this.onerror=null;this.src='https://cdn.discordapp.com/embed/avatars/0.png'">
+        <img class="avatar" id="discordAvatar" alt="Official Knightly" src="https://cdn.discordapp.com/embed/avatars/0.png">
         <div class="status-dot" id="statusDot"></div>
       </div>
       <div style="flex:1">
-        <div class="discord-name" id="discordName">Statik.Flick</div>
-        <div class="discord-sub" id="discordSub">@handle</div>
+        <div class="discord-name" id="discordName">Official Knightly</div>
+        <div class="discord-sub" id="discordSub">@discord</div>
       </div>
       <div class="arrow">↗</div>
     </a>
@@ -784,16 +794,11 @@ body.light-theme .bg-video{opacity:.10;filter:blur(16px) saturate(.45) brightnes
 <script>
 
 const bgVideo=document.getElementById('bgVideo');
+const EDIT_VIDEO='YTDown.com_Shorts_Media_AvtD5pW-v5c_Knightmare-Chess-Edit_002_720p.mp4';
 if(bgVideo){
-  const candidates=['YTDown.com_Shorts_Media_AvtD5pW-v5c_Knightmare-Chess-Edit_002_720p.mp4','background.mp4','bg.mp4','background-video.mp4','bg-video.mp4','edit.mp4','video.mp4','assets/background.mp4','assets/bg.mp4','assets/edit.mp4','assets/video.mp4'];
-  (async()=>{
-    for(const src of candidates){
-      try{
-        const r=await fetch(src,{method:'HEAD',cache:'no-store'});
-        if(r.ok){bgVideo.src=src;bgVideo.load();try{await bgVideo.play();}catch(e){}break;}
-      }catch(e){}
-    }
-  })();
+  bgVideo.src=EDIT_VIDEO;
+  bgVideo.load();
+  bgVideo.addEventListener('canplay',()=>bgVideo.play().catch(()=>{}),{once:true});
 }
 
 const watchEditBtn=document.getElementById('watchEditBtn');
@@ -802,8 +807,8 @@ const editWatchOverlay=document.getElementById('editWatchOverlay');
 const editWatchVideo=document.getElementById('editWatchVideo');
 const editWatchClose=document.getElementById('editWatchClose');
 function openEditViewer(){
-  if(!editWatchOverlay||!editWatchVideo||!bgVideo?.src)return;
-  editWatchVideo.src='YTDown.com_Shorts_Media_AvtD5pW-v5c_Knightmare-Chess-Edit_002_720p.mp4';
+  if(!editWatchOverlay||!editWatchVideo)return;
+  editWatchVideo.src=EDIT_VIDEO;
   editWatchOverlay.classList.add('open');
   editWatchOverlay.setAttribute('aria-hidden','false');
   document.body.style.overflow='hidden';
@@ -978,7 +983,7 @@ setInterval(() => {
   setTimeout(() => { ri = (ri + 1) % roles.length; roleEl.textContent = roles[ri]; roleEl.classList.add('show'); }, 430);
 }, 3000);
 
-const DEFAULT_AVATAR = 'https://github.com/akatsukixpain12-stack.png?size=128';
+const DEFAULT_AVATAR = 'https://cdn.discordapp.com/embed/avatars/0.png';
 const discordAvatarEl = document.getElementById('discordAvatar');
 const personalAvatarEl = document.getElementById('personalAvatar');
 discordAvatarEl.addEventListener('error', () => { discordAvatarEl.src = DEFAULT_AVATAR; });
@@ -991,7 +996,7 @@ async function fetchLanyard() {
     if (!data.success) throw new Error('lanyard');
     const u = data.data.discord_user;
     const colors = { online: '#3ba55d', idle: '#e6a23c', dnd: '#e04a4a', offline: '#5c5c5c' };
-    document.getElementById('discordName').textContent = u.global_name || u.username || 'Statik.Flick';
+    document.getElementById('discordName').textContent = 'Official Knightly';
     document.getElementById('discordSub').textContent = '@' + (u.username || 'Statik.Flick');
     document.getElementById('statusDot').style.background = colors[data.data.discord_status] || colors.offline;
     if (u.avatar) {
