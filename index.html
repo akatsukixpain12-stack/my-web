@@ -785,7 +785,7 @@ body.light-theme .bg-video{opacity:.10;filter:blur(16px) saturate(.45) brightnes
 
 const bgVideo=document.getElementById('bgVideo');
 if(bgVideo){
-  const candidates=['chessedit.mp4','background.mp4','bg.mp4','background-video.mp4','bg-video.mp4','edit.mp4','video.mp4','assets/background.mp4','assets/bg.mp4','assets/edit.mp4','assets/video.mp4'];
+  const candidates=['YTDown.com_Shorts_Media_AvtD5pW-v5c_Knightmare-Chess-Edit_002_720p.mp4','background.mp4','bg.mp4','background-video.mp4','bg-video.mp4','edit.mp4','video.mp4','assets/background.mp4','assets/bg.mp4','assets/edit.mp4','assets/video.mp4'];
   (async()=>{
     for(const src of candidates){
       try{
@@ -803,7 +803,7 @@ const editWatchVideo=document.getElementById('editWatchVideo');
 const editWatchClose=document.getElementById('editWatchClose');
 function openEditViewer(){
   if(!editWatchOverlay||!editWatchVideo||!bgVideo?.src)return;
-  editWatchVideo.src='chessedit.mp4';
+  editWatchVideo.src='YTDown.com_Shorts_Media_AvtD5pW-v5c_Knightmare-Chess-Edit_002_720p.mp4';
   editWatchOverlay.classList.add('open');
   editWatchOverlay.setAttribute('aria-hidden','false');
   document.body.style.overflow='hidden';
