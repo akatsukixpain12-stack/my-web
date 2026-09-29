@@ -608,7 +608,7 @@ body.light-theme .bg-video{opacity:.10;filter:blur(16px) saturate(.45) brightnes
     <div class="label">discord status</div>
     <a class="glass discord-card press-effect" href="https://discord.com/users/1289053723041202186" target="_blank" rel="noopener">
       <div class="avatar-wrap">
-        <img class="avatar" id="discordAvatar" alt="Statik.Flick" src="https://github.com/akatsukixpain12-stack.png?size=128" onerror="this.onerror=null;this.src='https://cdn.discordapp.com/embed/avatars/0.png'">
+        <img class="avatar" id="discordAvatar" alt="Official Knightly" src="https://github.com/akatsukixpain12-stack.png?size=128" onerror="this.onerror=null;this.src='https://cdn.discordapp.com/embed/avatars/0.png'">
         <div class="status-dot" id="statusDot"></div>
       </div>
       <div style="flex:1">
@@ -930,7 +930,7 @@ addEventListener('pointermove', e => {
   cursorGlow.style.top = e.clientY + 'px';
 });
 
-const roles = ['web developer', 'python & javascript', 'chess player', 'crypto & forex trader', 'model', 'gym enthusiast'];
+const roles = ['web developer', 'python & javascript', 'AI builder', 'chess player', 'chess engine developer', 'AMV / VFX editor', 'game developer'];
 let ri = 0;
 const roleEl = document.getElementById('roleText');
 setInterval(() => {
@@ -961,8 +961,8 @@ async function fetchLanyard() {
       spotifyAvatarEl.src = url;
     }
   } catch (e) {
-    document.getElementById('discordName').textContent = 'Statik.Flick';
-    document.getElementById('discordSub').textContent = '@Statik.Flick';
+    document.getElementById('discordName').textContent = 'Official Knightly';
+    document.getElementById('discordSub').textContent = '@discord';
     document.getElementById('statusDot').style.background = '#5c5c5c';
   }
 }
