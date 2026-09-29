@@ -230,25 +230,25 @@ body.light-theme .modal-drag-bar { background: rgba(0,0,0,.25); }
 
 .personal-tools{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
 .stack-toggle{border:1px solid var(--line);background:transparent;color:var(--faint);border-radius:9px;padding:6px 11px;font:9px 'JetBrains Mono',monospace;cursor:pointer;transition:all .25s ease}.stack-toggle:hover,.stack-toggle[aria-pressed='true']{border-color:var(--gold2);color:var(--gold);background:var(--surface2)}
-.playlist-stack.is-stacked{gap:0;padding:8px 10px 18px 4px;position:relative;overflow:visible}
-.playlist-stack.is-stacked .playlist-card{margin-top:-112px;transform:translateX(0) scale(.985);box-shadow:0 10px 26px rgba(0,0,0,.18);transition:transform .32s ease,box-shadow .32s ease,margin-top .32s ease;position:relative}
-.playlist-stack.is-stacked .playlist-card:first-child{margin-top:0;transform:translateX(0) scale(1);z-index:6}
-.playlist-stack.is-stacked .playlist-card:nth-child(2){transform:translateX(7px) scale(.99);z-index:5}
-.playlist-stack.is-stacked .playlist-card:nth-child(3){transform:translateX(2px) scale(.985);z-index:4}
-.playlist-stack.is-stacked .playlist-card:nth-child(4){transform:translateX(8px) scale(.98);z-index:3}
-.playlist-stack.is-stacked .playlist-card:nth-child(5){transform:translateX(3px) scale(.975);z-index:2}
-.playlist-stack.is-stacked .playlist-card:nth-child(6){transform:translateX(9px) scale(.97);z-index:1}
-.playlist-stack:not(.is-stacked) .playlist-card{margin-top:0;transform:none;transition:transform .32s ease,box-shadow .32s ease,margin-top .32s ease}
-.playlist-stack.is-stacked .playlist-card:hover{transform:translateX(12px) scale(1.005);z-index:10}
-@media (max-width:600px){.playlist-stack.is-stacked .playlist-card{margin-top:-118px}.playlist-stack.is-stacked .playlist-card:first-child{margin-top:0}}
+..is-stacked{gap:0;padding:8px 10px 18px 4px;position:relative;overflow:visible}
+..is-stacked .playlist-card{margin-top:-112px;transform:translateX(0) scale(.985);box-shadow:0 10px 26px rgba(0,0,0,.18);transition:transform .32s ease,box-shadow .32s ease,margin-top .32s ease;position:relative}
+..is-stacked .playlist-card:first-child{margin-top:0;transform:translateX(0) scale(1);z-index:6}
+..is-stacked .playlist-card:nth-child(2){transform:translateX(7px) scale(.99);z-index:5}
+..is-stacked .playlist-card:nth-child(3){transform:translateX(2px) scale(.985);z-index:4}
+..is-stacked .playlist-card:nth-child(4){transform:translateX(8px) scale(.98);z-index:3}
+..is-stacked .playlist-card:nth-child(5){transform:translateX(3px) scale(.975);z-index:2}
+..is-stacked .playlist-card:nth-child(6){transform:translateX(9px) scale(.97);z-index:1}
+.:not(.is-stacked) .playlist-card{margin-top:0;transform:none;transition:transform .32s ease,box-shadow .32s ease,margin-top .32s ease}
+..is-stacked .playlist-card:hover{transform:translateX(12px) scale(1.005);z-index:10}
+@media (max-width:600px){..is-stacked .playlist-card{margin-top:-118px}..is-stacked .playlist-card:first-child{margin-top:0}}
 .expand-btn{background:transparent;border:1px solid var(--line);padding:4px 9px;border-radius:8px;color:var(--gold);font:9px 'JetBrains Mono',monospace;cursor:pointer}
 .expand-btn:hover{border-color:var(--gold2)}
 
-.playlist-stack{
+.{
   display:flex;flex-direction:column;gap:12px;max-height:none;overflow:visible;padding-right:2px;
   transition:max-height .35s ease, gap .35s ease;
 }
-.personal-tab.expanded .playlist-stack{
+.personal-tab.expanded .{
   max-height:950px;gap:18px;overflow-y:auto;
 }
 .playlist-card{border:1px solid var(--line);border-radius:12px;padding:4px;background:var(--surface);overflow:hidden}
@@ -330,8 +330,6 @@ footer{text-align:center;padding-top:24px;color:var(--faint);font:9px 'JetBrains
 .theme-divider{opacity:.42;margin:0 3px}
 .theme-label{font-weight:600}
 
-
-
 /* Enhanced Chess Card Styling */
 .chess-card{display:grid;gap:14px;padding:18px;position:relative}
 .chess-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold2),transparent)}
@@ -371,7 +369,6 @@ section{position:relative}section>.label{display:flex;align-items:center;gap:8px
 @media(max-width:600px){.hero-halo{width:78vw;height:78vw}.orbit-a{width:92vw;height:92vw}.orbit-b{width:68vw;height:68vw}.audio-viz-pro{height:118px}.wrap{padding-bottom:100px}}
 @media(prefers-reduced-motion:reduce){.hero-halo,.hero-orbit{animation:none}.link-card::after{display:none}.name span,.name span::after{animation:none!important}.name span.scrambling{font-family:inherit;font-size:inherit;letter-spacing:inherit;text-shadow:none}}
 
-
 /* V7 — conservative V4-style motion polish */
 :root{--motion-ease:cubic-bezier(.16,1,.3,1)}
 .glass{position:relative;overflow:hidden}
@@ -387,7 +384,6 @@ section:nth-of-type(2){animation-delay:.04s} section:nth-of-type(3){animation-de
 .link-card:hover,.trait-card:hover,.skill-card:hover{transform:translateY(-3px)}
 .discord-card:hover{transform:translateY(-2px)}
 @media(prefers-reduced-motion:reduce){.hero,section{animation:none!important}.glass::after{display:none}.link-card,.trait-card,.skill-card,.playlist-card{transition:none!important}}
-
 
 /* ===== V7 ANGELIC × DEMONIC ATMOSPHERE ===== */
 :root{--heaven-glow:rgba(255,248,225,.18);--heaven-line:rgba(255,255,255,.22);--hell-glow:rgba(122,24,35,.18);--hell-line:rgba(190,92,92,.16)}
@@ -436,7 +432,6 @@ body.light-theme .viz-bar{background:linear-gradient(to top,rgba(183,138,66,.3),
 /* Keep motion elegant and disable atmosphere when reduced motion is requested */
 @media(prefers-reduced-motion:reduce){.v7-atmosphere::before,.v7-atmosphere::after,body.light-theme .hero::before{animation:none!important}.v7-atmosphere{display:none}}
 
-
 /* ===== CLASSIC iOS POLISH ===== */
 .theme-toggle-badge{display:inline-flex;align-items:center;justify-content:center;gap:5px;min-width:0;width:auto;font-weight:600}
 .theme-icon{width:14px;height:14px;display:grid;place-items:center;flex:0 0 14px}
@@ -463,9 +458,6 @@ body.light-theme #particles{opacity:.86}
 @keyframes caretBlink{0%,45%{opacity:0}50%,100%{opacity:.75}}
 @media(prefers-reduced-motion:reduce){.name::after{display:none}}
 
-
-
-
 /* Consistent mobile rhythm across narrow screens */
 @media(max-width:600px){
   .wrap{width:100%;max-width:560px;padding-left:clamp(16px,4.5vw,22px);padding-right:clamp(16px,4.5vw,22px);padding-bottom:96px}
@@ -486,7 +478,6 @@ body.light-theme #particles{opacity:.86}
   .name{font-size:1.9rem}
 }
 </style>
-
 
 <style>
 /* V24 — unify the floating player with the OLED/iOS/social visual language without changing the 5-bar visualizer behavior. */
@@ -541,7 +532,6 @@ body.light-theme .audio-visualizer-bars span{background:#111113!important;box-sh
 @media(max-width:600px){.float-player{width:54px!important;height:54px!important;right:max(14px,env(safe-area-inset-right))!important;bottom:max(16px,env(safe-area-inset-bottom))!important}.float-play-icon{width:17px!important;height:17px!important}.audio-visualizer-bars{inset:9px!important;gap:4px!important}}
 </style>
 
-
 <style id="v34-control-fix">
 .perf-badges-container,.perf-badge{display:none!important}
 .theme-control-wrap{position:fixed;top:10px;left:10px;z-index:120;display:flex;flex-direction:column;align-items:flex-start;gap:4px}
@@ -595,7 +585,18 @@ body.light-theme .chess-card{background:rgba(255,255,255,.94)!important}
 body.light-theme .rating-platform{background:rgba(0,0,0,.018)}
 .chess-rating strong{font-variant-numeric:tabular-nums}
 .world-live-card{background:rgba(255,255,255,.035)!important}
-</style></head>
+</style><style id="mobile-performance-final">
+@media(max-width:600px){
+  .glass{backdrop-filter:blur(7px)!important;-webkit-backdrop-filter:blur(7px)!important}
+  .float-player,.edit-corner-btn{backdrop-filter:blur(6px)!important;-webkit-backdrop-filter:blur(6px)!important}
+  .modal-overlay{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+  .bg-video{filter:blur(.4px) saturate(.78) brightness(.50)!important;transform:scale(1.01)!important}
+  .hero{animation:none!important}
+  .hero-halo,.hero-orbit{animation:none!important}
+  .glass::after{display:none!important}
+}
+</style>
+</head>
 
 <div class="scroll-progress" id="scrollProgress"></div>
 <body class="light-theme">
@@ -621,7 +622,7 @@ body.light-theme .rating-platform{background:rgba(0,0,0,.018)}
     <span class="theme-label">Light</span>
   </button>
   <div class="quality-status" aria-label="Website quality and refresh rate">
-    <b id="perfFps">280Hz</b><span>•</span><span id="perfThemeName">8K Resolution</span>
+    <b id="perfFps">60 FPS</b><span>•</span><span id="perfThemeName">Mobile optimized</span>
   </div>
 </div>
   <button class="edit-corner-btn" id="editCornerBtn" type="button" aria-label="Watch edit"><span class="edit-corner-dot"></span><span>watch edit</span><b>↗</b></button>
@@ -763,7 +764,6 @@ body.light-theme .rating-platform{background:rgba(0,0,0,.018)}
       <div class="modal-scroll" id="modalScroll">
         <div class="player-tabs">
           <button class="tab-btn press-effect active" data-tab="theme" type="button">theme songs</button>
-          <button class="tab-btn press-effect" data-tab="spotify" type="button">spotify</button>
         </div>
 
         <div id="themeTab">
@@ -779,33 +779,8 @@ body.light-theme .rating-platform{background:rgba(0,0,0,.018)}
             </div>
           </div>
         </div>
-
-        <div class="spotify-tab" id="spotifyTab">
-          <div class="spotify-profile">
-            <img class="spotify-avatar-img" id="spotifyAvatar" alt="Official Knightly" src="https://github.com/akatsukixpain12-stack.png?size=128">
-            <div class="spotify-profile-main">
-              <div class="spotify-name">OFFICIAL KNIGHTLY</div>
-              <a class="spotify-link" href="https://open.spotify.com/user/31lhkfhfk3wqurtjdypdk5t7qxg4" target="_blank" rel="noopener">open Spotify profile ↗</a>
-              <div class="spotify-now" id="spotifyNow">Spotify • all playlists</div>
-            </div>
-          </div>
-          <div class="spotify-tools">
-            <span class="track-note">all playlists</span>
-            <a class="stack-toggle" href="https://open.spotify.com/user/31lhkfhfk3wqurtjdypdk5t7qxg4" target="_blank" rel="noopener">open profile ↗</a>
-          </div>
-          <div class="playlist-stack" id="playlistStack">
-            <div class="playlist-card"><iframe data-src="https://open.spotify.com/embed/playlist/28Uf8nSzzk1tGlFgGiDB1M?utm_source=generator&theme=0" src="about:blank" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" title="Spotify playlist 1"></iframe></div>
-            <div class="playlist-card"><iframe data-src="https://open.spotify.com/embed/playlist/2YNR549KgybuThIqJTiIvW?utm_source=generator&theme=0" src="about:blank" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" title="Spotify playlist 2"></iframe></div>
-            <div class="playlist-card"><iframe data-src="https://open.spotify.com/embed/playlist/2LHjM7oUUUP8FkpiSH1VkW?utm_source=generator&theme=0" src="about:blank" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" title="Spotify playlist 3"></iframe></div>
-            <div class="playlist-card"><iframe data-src="https://open.spotify.com/embed/playlist/62tGPmnbGWeKmeNDHsV7jO?utm_source=generator&theme=0" src="about:blank" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" title="Spotify playlist 4"></iframe></div>
-            <div class="playlist-card"><iframe data-src="https://open.spotify.com/embed/playlist/30okxJP5OJht92w56Nwb6I?utm_source=generator&theme=0" src="about:blank" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" title="Hyper DNA playlist"></iframe></div>
-            <div class="playlist-card"><iframe data-src="https://open.spotify.com/embed/playlist/7JMYQZicAfUYRFt5XLObF3?utm_source=generator&theme=0" src="about:blank" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" title="Bengali songs playlist"></iframe></div>
-          </div>
         </div>
-        </div>
-
       </div>
-    </div>
   </div>
 
   <div class="edit-watch-overlay" id="editWatchOverlay" aria-hidden="true">
@@ -915,10 +890,10 @@ setInterval(() => {
   if (document.visibilityState === 'visible' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) scramble();
 }, 12000);
 
-const selectedRefresh = 280;
-const selectedRes = '8K';
-const isAutoMode = false;
-const isLowEndDevice = false;
+const selectedRefresh = 60;
+const selectedRes = 'Mobile';
+const isAutoMode = true;
+const isLowEndDevice = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) || (navigator.hardwareConcurrency || 8) <= 4;
 
 const canvas = document.getElementById('particles');
 const ctx = canvas.getContext('2d');
@@ -926,11 +901,10 @@ let W = innerWidth, H = innerHeight;
 
 function resizeCanvas() {
   W = innerWidth; H = innerHeight;
-  const maxScale = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) ? 1.25 : 1.5;
-  const renderScale = Math.min(window.devicePixelRatio || 1, maxScale) * 1.35;
-  const maxPixels = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) ? 2_400_000 : 5_500_000;
-  const pixels = W * H * renderScale * renderScale;
-  const finalScale = pixels > maxPixels ? Math.sqrt(maxPixels / Math.max(1, W * H)) : renderScale;
+  const mobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+  const dpr = Math.min(window.devicePixelRatio || 1, mobile ? 1 : 1.25);
+  const maxPixels = mobile ? 1000000 : 2200000;
+  const finalScale = Math.min(dpr, Math.sqrt(maxPixels / Math.max(1, W * H)));
   canvas.width = Math.max(1, Math.floor(W * finalScale));
   canvas.height = Math.max(1, Math.floor(H * finalScale));
   ctx.setTransform(finalScale, 0, 0, finalScale, 0, 0);
@@ -939,11 +913,9 @@ resizeCanvas();
 addEventListener('resize', resizeCanvas);
 
 function getParticleCount() {
-  if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return 20;
-  if (selectedRefresh <= 60) return 126;
-  if (selectedRefresh <= 90) return 174;
-  if (selectedRefresh <= 120) return 222;
-  return 270;
+  if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return 12;
+  const mobile = innerWidth <= 600 || isLowEndDevice;
+  return mobile ? 42 : 90;
 }
 
 function makeParticle(){
@@ -986,8 +958,7 @@ function particleFrame(timestamp){
   ctx.clearRect(0,0,W,H);
   const light=document.body.classList.contains('light-theme');
   // Rich particle density is preserved, but expensive shadow state changes are avoided per particle.
-  ctx.shadowBlur=light?5:7;
-  ctx.shadowColor=light?'rgba(0,0,0,.30)':'rgba(255,255,255,.34)';
+  ctx.shadowBlur=0;
   for(const p of particles){
     p.phase += 0.022 * dt;
     const driftX = Math.sin(p.phase * 0.72 + p.y * 0.006) * 0.24;
@@ -1003,11 +974,6 @@ function particleFrame(timestamp){
     ctx.beginPath();ctx.arc(p.x,p.y,p.r*(.94+.08*aura),0,Math.PI*2);
     ctx.fillStyle=light?`rgba(10,10,12,${Math.min(.95,alpha*1.08)})`:`rgba(255,255,255,${Math.min(.98,alpha)})`;
     ctx.fill();
-    ctx.shadowBlur=0;
-    ctx.beginPath();ctx.arc(p.x,p.y,p.r*2.2,0,Math.PI*2);
-    ctx.fillStyle=light?'rgba(0,0,0,.035)':'rgba(255,255,255,.045)';
-    ctx.fill();
-    ctx.shadowBlur=light?5:7;
   }
   ctx.shadowBlur=0;
   particleRAF=requestAnimationFrame(particleFrame);
@@ -1037,15 +1003,14 @@ setInterval(() => {
 
 const DEFAULT_AVATAR = 'https://cdn.discordapp.com/embed/avatars/0.png';
 const discordAvatarEl = document.getElementById('discordAvatar');
-const personalAvatarEl = document.getElementById('personalAvatar');
-discordAvatarEl.addEventListener('error', () => { discordAvatarEl.src = DEFAULT_AVATAR; });
-personalAvatarEl.addEventListener('error', () => { personalAvatarEl.src = DEFAULT_AVATAR; });
+if (discordAvatarEl) discordAvatarEl.addEventListener('error', () => { discordAvatarEl.src = DEFAULT_AVATAR; });
 
 async function fetchLanyard() {
   try {
     const res = await fetch('https://api.lanyard.rest/v1/users/1289053723041202186', { cache:'no-store' });
+    if (!res.ok) throw new Error('Lanyard HTTP '+res.status);
     const data = await res.json();
-    if (!data.success) throw new Error('lanyard');
+    if (!data.success || !data.data?.discord_user) throw new Error('Lanyard unavailable');
     const u = data.data.discord_user;
     const colors = { online: '#3ba55d', idle: '#e6a23c', dnd: '#e04a4a', offline: '#5c5c5c' };
     document.getElementById('discordName').textContent = 'Official Knightly';
@@ -1054,10 +1019,10 @@ async function fetchLanyard() {
     if (u.avatar) {
       const ext = String(u.avatar).startsWith('a_') ? 'gif' : 'png';
       const url = `https://cdn.discordapp.com/avatars/${u.id}/${u.avatar}.${ext}?size=128`;
-      discordAvatarEl.src = url;
-      personalAvatarEl.src = url;
+      if (discordAvatarEl) discordAvatarEl.src = url;
     }
   } catch (e) {
+    console.warn('Lanyard:', e);
     document.getElementById('discordName').textContent = 'Official Knightly';
     document.getElementById('discordSub').textContent = '@discord';
     document.getElementById('statusDot').style.background = '#5c5c5c';
@@ -1065,10 +1030,6 @@ async function fetchLanyard() {
 }
 fetchLanyard();
 setInterval(fetchLanyard, 30000);
-
-const personalFrames = [...document.querySelectorAll('.personal-tab iframe')];
-function setpersonalVisual(){}
-function pauseAllpersonal(){}
 
 const overlay = document.getElementById('modalOverlay');
 const playerModal = document.getElementById('playerModal');
@@ -1095,22 +1056,22 @@ dragArea.addEventListener('pointermove',e=>{if(!isDragging)return;const delta=st
 dragArea.addEventListener('pointerup',e=>{if(!isDragging)return;isDragging=false;playerModal.style.transition='';try{dragArea.releasePointerCapture(e.pointerId)}catch(err){}snapSheet();});
 dragArea.addEventListener('pointercancel',()=>{isDragging=false;playerModal.style.transition='';snapSheet();});
 
-const spotifyTab = document.getElementById('spotifyTab');
+const  = document.getElementById('');
 document.querySelectorAll('.tab-btn').forEach(btn => btn.addEventListener('click', () => {
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   const isSpotify = btn.dataset.tab === 'spotify';
   document.getElementById('themeTab').style.display = isSpotify ? 'none' : 'block';
-  spotifyTab?.classList.toggle('active', isSpotify);
-  if(isSpotify) window.requestAnimationFrame(()=>document.querySelectorAll('#spotifyTab iframe').forEach(f=>{ if(!f.dataset.loaded){ f.dataset.loaded='1'; f.src=f.dataset.src; } }));
+  ?.classList.toggle('active', isSpotify);
+  if(isSpotify) window.requestAnimationFrame(()=>document.querySelectorAll('# iframe').forEach(f=>{ if(!f.dataset.loaded){ f.dataset.loaded='1'; f.src=f.dataset.src; } }));
 }));
 
-const playlistStack = document.getElementById('playlistStack');
-const stackToggle = document.getElementById('stackToggle');
-if(stackToggle && playlistStack){
+const  = document.getElementById('');
+const  = document.getElementById('');
+if( && ){
   let stacked = localStorage.getItem('statik_playlist_layout') === 'stacked';
-  const paintStack=()=>{playlistStack.classList.toggle('is-stacked',stacked);stackToggle.setAttribute('aria-pressed',String(stacked));stackToggle.textContent=stacked?'Unstack':'Stack';};
-  stackToggle.addEventListener('click',()=>{stacked=!stacked;localStorage.setItem('statik_playlist_layout',stacked?'stacked':'unstacked');paintStack();}); paintStack();
+  const paintStack=()=>{.classList.toggle('is-stacked',stacked);.setAttribute('aria-pressed',String(stacked));.textContent=stacked?'Unstack':'Stack';};
+  .addEventListener('click',()=>{stacked=!stacked;localStorage.setItem('statik_playlist_layout',stacked?'stacked':'unstacked');paintStack();}); paintStack();
 }
 
 const audio = document.getElementById('audio');
@@ -1211,7 +1172,6 @@ if('mediaSession' in navigator){
 // IMPORTANT: do not stop audio when the tab becomes hidden. Mobile browsers can keep
 // the HTMLAudioElement playing in the background. Navigation/OS killing the page is
 // outside a website's control, but we intentionally do not pause on visibility/pagehide.
-
 
 const RATING_TIMEOUT=4500;
 function withTimeout(url,options={}){
@@ -1535,23 +1495,23 @@ body.light-theme .player-tabs{background:rgba(0,0,0,.035);border-color:rgba(0,0,
 body.light-theme .tab-btn.active{background:rgba(255,255,255,.96);box-shadow:0 1px 5px rgba(0,0,0,.10),inset 0 0 0 1px rgba(0,0,0,.035);color:#111113}
 
 /* personal deck: preserve the stacked/unstacked behavior without edge clipping. */
-.playlist-stack{display:flex;flex-direction:column;gap:14px!important;overflow:visible!important}
-.playlist-stack.is-stacked{display:grid!important;grid-template-columns:1fr!important;gap:0!important;padding:10px 4px 26px!important;min-height:225px;position:relative;overflow:visible!important}
-.playlist-stack.is-stacked .playlist-card{grid-column:1;grid-row:1;margin:0!important;width:100%;height:178px;overflow:hidden;transform:none!important;transition:transform .38s cubic-bezier(.16,1,.3,1),filter .38s,opacity .38s,box-shadow .38s!important;border-radius:16px!important}
-.playlist-stack.is-stacked .playlist-card iframe{display:block;width:100%;height:178px!important;min-height:178px!important;border:0!important;border-radius:14px!important}
-.playlist-stack.is-stacked .playlist-card:nth-child(1){z-index:6;transform:translateY(0) scale(1)!important;opacity:1}
-.playlist-stack.is-stacked .playlist-card:nth-child(2){z-index:5;transform:translateY(10px) scale(.975)!important;opacity:.82}
-.playlist-stack.is-stacked .playlist-card:nth-child(3){z-index:4;transform:translateY(20px) scale(.95)!important;opacity:.68}
-.playlist-stack.is-stacked .playlist-card:nth-child(4){z-index:3;transform:translateY(30px) scale(.925)!important;opacity:.54}
-.playlist-stack.is-stacked .playlist-card:nth-child(5){z-index:2;transform:translateY(40px) scale(.90)!important;opacity:.40}
-.playlist-stack.is-stacked .playlist-card:nth-child(6){z-index:1;transform:translateY(50px) scale(.875)!important;opacity:.28}
-.playlist-stack.is-stacked .playlist-card:hover{transform:translateY(-5px) scale(1.01)!important;z-index:20;opacity:1;filter:none}
-.playlist-stack:not(.is-stacked) .playlist-card{height:auto;overflow:hidden;transform:none!important;opacity:1!important}
+.{display:flex;flex-direction:column;gap:14px!important;overflow:visible!important}
+..is-stacked{display:grid!important;grid-template-columns:1fr!important;gap:0!important;padding:10px 4px 26px!important;min-height:225px;position:relative;overflow:visible!important}
+..is-stacked .playlist-card{grid-column:1;grid-row:1;margin:0!important;width:100%;height:178px;overflow:hidden;transform:none!important;transition:transform .38s cubic-bezier(.16,1,.3,1),filter .38s,opacity .38s,box-shadow .38s!important;border-radius:16px!important}
+..is-stacked .playlist-card iframe{display:block;width:100%;height:178px!important;min-height:178px!important;border:0!important;border-radius:14px!important}
+..is-stacked .playlist-card:nth-child(1){z-index:6;transform:translateY(0) scale(1)!important;opacity:1}
+..is-stacked .playlist-card:nth-child(2){z-index:5;transform:translateY(10px) scale(.975)!important;opacity:.82}
+..is-stacked .playlist-card:nth-child(3){z-index:4;transform:translateY(20px) scale(.95)!important;opacity:.68}
+..is-stacked .playlist-card:nth-child(4){z-index:3;transform:translateY(30px) scale(.925)!important;opacity:.54}
+..is-stacked .playlist-card:nth-child(5){z-index:2;transform:translateY(40px) scale(.90)!important;opacity:.40}
+..is-stacked .playlist-card:nth-child(6){z-index:1;transform:translateY(50px) scale(.875)!important;opacity:.28}
+..is-stacked .playlist-card:hover{transform:translateY(-5px) scale(1.01)!important;z-index:20;opacity:1;filter:none}
+.:not(.is-stacked) .playlist-card{height:auto;overflow:hidden;transform:none!important;opacity:1!important}
 .links-grid{gap:clamp(6px,2vw,12px)!important}
 body:not(.light-theme) .ambient-particles{color:#f5f5f7}.ambient-particles i{box-shadow:0 0 8px currentColor,0 0 18px currentColor}
 
 /* Center-out audio response: the two middle bars react the most, then fall off symmetrically. */
-@media(max-width:600px){.social-card-main{align-items:flex-start}.social-open{padding:7px 9px}.social-sub{font-size:8px}.social-strip{height:54px}.playlist-stack.is-stacked{min-height:205px}.playlist-stack.is-stacked .playlist-card{height:162px}.playlist-stack.is-stacked .playlist-card iframe{height:162px!important;min-height:162px!important}}
+@media(max-width:600px){.social-card-main{align-items:flex-start}.social-open{padding:7px 9px}.social-sub{font-size:8px}.social-strip{height:54px}..is-stacked{min-height:205px}..is-stacked .playlist-card{height:162px}..is-stacked .playlist-card iframe{height:162px!important;min-height:162px!important}}
 
 /* Final OLED cleanup: neutral monochrome atmosphere in dark mode. */
 body:not(.light-theme) .hero-halo{background:radial-gradient(circle,rgba(255,255,255,.055),rgba(255,255,255,.018) 34%,transparent 70%)!important;box-shadow:0 0 90px rgba(255,255,255,.025)!important}
@@ -1736,7 +1696,6 @@ body:not(.light-theme) .play-btn.is-playing{box-shadow:0 0 0 1px rgba(255,255,25
 }
 </style>
 
-
 <style id="visualizer-bold-rounded-final">
 /* Keep the original visualizer motion; only make the bars thicker and rounder. */
 .audio-visualizer-bars{gap:4px!important;align-items:center!important;justify-content:center!important}
@@ -1761,20 +1720,3 @@ body:not(.light-theme) .play-btn.is-playing{box-shadow:0 0 0 1px rgba(255,255,25
 .world-live-card{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:9px;padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:linear-gradient(135deg,rgba(255,255,255,.045),rgba(255,255,255,.015))}.world-live-copy{min-width:0}.world-live-title{font-size:11px;font-weight:600}.world-live-sub{font:8px/1.5 'JetBrains Mono',monospace;color:var(--faint);margin-top:2px}.world-live-btn{flex:0 0 auto;padding:8px 10px;border:1px solid var(--line2);border-radius:9px;background:transparent;color:var(--text);text-decoration:none;font:8px 'JetBrains Mono',monospace}.world-live-btn:hover{border-color:var(--gold);color:var(--gold)}
 </style>
 
-<style id="knightly-v27-fixes">
-/* V27: clearer chess edit + working Theme/Spotify music tabs. */
-.bg-video{image-rendering:auto!important}
-.spotify-tab{display:none}
-.spotify-tab.active{display:block}
-.spotify-profile{display:flex;align-items:center;gap:10px;margin-bottom:12px}
-.spotify-avatar-img{width:42px;height:42px;border-radius:50%;object-fit:cover;border:1px solid var(--line2);background:var(--surface2)}
-.spotify-profile-main{min-width:0;flex:1}
-.spotify-name{font-size:13px;font-weight:650}
-.spotify-link{font:9px 'JetBrains Mono',monospace;color:var(--gold);text-decoration:none}
-.spotify-now{font:8px 'JetBrains Mono',monospace;color:var(--faint);margin-top:3px}
-.spotify-tools{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
-.spotify-tools .track-note{font:8px 'JetBrains Mono',monospace;color:var(--faint);text-transform:uppercase;letter-spacing:1px}
-#spotifyTab .playlist-card iframe{display:block;width:100%;height:152px;border:0;border-radius:10px;background:#000}
-#spotifyTab .playlist-card{content-visibility:auto;contain:content}
-@media(max-width:600px){#spotifyTab .playlist-card iframe{height:152px}}
-</style>
