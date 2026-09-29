@@ -1013,7 +1013,7 @@ async function fetchLanyard() {
     if (!data.success || !data.data?.discord_user) throw new Error('Lanyard unavailable');
     const u = data.data.discord_user;
     const colors = { online: '#3ba55d', idle: '#e6a23c', dnd: '#e04a4a', offline: '#5c5c5c' };
-    document.getElementById('discordName').textContent = 'Official Knightly';
+    document.getElementById('discordName').textContent = u.global_name || u.username || 'Official Knightly';
     document.getElementById('discordSub').textContent = '@' + (u.username || 'OfficialKnightly');
     document.getElementById('statusDot').style.background = colors[data.data.discord_status] || colors.offline;
     if (u.avatar) {
