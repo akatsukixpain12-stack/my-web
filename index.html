@@ -1179,33 +1179,59 @@ async function loadLichessRatings(){
 async function loadWorldChessRatings(){
   const status=document.getElementById('worldStatus');
   const cells={rapid:document.getElementById('worldRapid'),blitz:document.getElementById('worldBlitz'),bullet:document.getElementById('worldBullet')};
-  const endpoints=[
-    'https://worldchess.com/api/profile/1232722',
-    'https://worldchess.com/api/user/1232722',
-    'https://worldchess.com/api/users/1232722',
-    'https://worldchess.com/api/player/1232722'
+  const profileUrl='https://worldchess.com/profile/1232722';
+  const apiUrls=[
+    'https://api.worldchess.com/api/profile/1232722',
+    'https://api.worldchess.com/profile/1232722',
+    'https://api.worldchess.com/api/user/1232722',
+    'https://api.worldchess.com/user/1232722'
   ];
-  for(const url of endpoints){
+  const setVals=(vals)=>{
+    const got=Object.values(vals).some(v=>v!=null);
+    if(!got)return false;
+    cells.rapid.textContent=vals.rapid??'—';
+    cells.blitz.textContent=vals.blitz??'—';
+    cells.bullet.textContent=vals.bullet??'—';
+    status.textContent='World Chess • live Online Elo';
+    return true;
+  };
+  const pick=(obj,keys)=>{
+    for(const k of keys){
+      const v=k.split('.').reduce((o,x)=>o?.[x],obj);
+      if(typeof v==='number'||typeof v==='string')return v;
+    }
+    return null;
+  };
+  for(const url of apiUrls){
     try{
-      const res=await fetch(url+'?ts='+Date.now(),{cache:'no-store',headers:{'Accept':'application/json'}});
-      if(!res.ok) continue;
+      const res=await fetch(url+'?ts='+Date.now(),{cache:'no-store',headers:{Accept:'application/json'}});
+      if(!res.ok)continue;
       const data=await res.json();
       const root=data?.data||data?.profile||data;
-      const pick=(obj,keys)=>{for(const k of keys){const v=k.split('.').reduce((o,x)=>o?.[x],obj);if(typeof v==='number'||typeof v==='string')return v;}return null;};
-      const vals={
-        rapid:pick(root,['rapid.rating','ratings.rapid','onlineElo.rapid','online_elo.rapid']),
-        blitz:pick(root,['blitz.rating','ratings.blitz','onlineElo.blitz','online_elo.blitz']),
-        bullet:pick(root,['bullet.rating','ratings.bullet','onlineElo.bullet','online_elo.bullet'])
-      };
-      const got=Object.values(vals).some(v=>v!=null);
-      if(got){
-        cells.rapid.textContent=vals.rapid??'—';cells.blitz.textContent=vals.blitz??'—';cells.bullet.textContent=vals.bullet??'—';
-        status.textContent='World Chess • current Online Elo';
-        return;
-      }
+      if(setVals({
+        rapid:pick(root,['rapid.rating','rapid.onlineElo','ratings.rapid.rating','onlineElo.rapid','online_elo.rapid']),
+        blitz:pick(root,['blitz.rating','blitz.onlineElo','ratings.blitz.rating','onlineElo.blitz','online_elo.blitz']),
+        bullet:pick(root,['bullet.rating','bullet.onlineElo','ratings.bullet.rating','onlineElo.bullet','online_elo.bullet'])
+      }))return;
     }catch(e){}
   }
-  status.textContent='World Chess • live profile linked (no cached/old Elo shown)';
+  // Last live attempt: read the public profile page itself. No value is hard-coded or cached.
+  try{
+    const res=await fetch(profileUrl+'?ts='+Date.now(),{cache:'no-store'});
+    if(res.ok){
+      const html=await res.text();
+      const read=(name)=>{
+        const patterns=[
+          new RegExp('"'+name+'"\\s*:\\s*\\{[^}]{0,500}?"rating"\\s*:\\s*(\\d+(?:\\.\\d+)?)','i'),
+          new RegExp(name+'[^\\d]{0,180}(\\d{2,5})','i')
+        ];
+        for(const p of patterns){const m=html.match(p);if(m)return m[1];}
+        return null;
+      };
+      if(setVals({rapid:read('rapid'),blitz:read('blitz'),bullet:read('bullet')}))return;
+    }
+  }catch(e){}
+  status.innerHTML='World Chess • <a href="'+profileUrl+'" target="_blank" rel="noopener">open live profile ↗</a>';
 }
 
 loadChessRatings();
